@@ -1,7 +1,14 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
-    ]
+    ],
+    "java.format.settings.url": ".vscode/java-google-style.xml",
+    "[java]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    }
 }
