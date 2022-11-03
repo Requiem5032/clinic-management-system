@@ -18,7 +18,6 @@ class DocNode {
   }
 }
 
-
 public class DoctorDB {
   DocNode head;
   DocNode tail;

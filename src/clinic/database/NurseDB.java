@@ -18,7 +18,6 @@ class NurNode {
   }
 }
 
-
 public class NurseDB {
   NurNode head;
   NurNode tail;

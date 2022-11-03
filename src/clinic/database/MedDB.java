@@ -14,7 +14,6 @@ class MedNode {
   }
 }
 
-
 public class MedDB {
   MedNode head;
   MedNode tail;
