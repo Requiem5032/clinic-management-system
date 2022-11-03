@@ -1,13 +1,17 @@
 package clinic.database;
+import clinic.entities.Patient;
 
-import clinic.entities.Med;;
+class PatientNode {
+  Patient data;
+  PatientNode prev;
+  PatientNode next;
 
-class MedNode {
-  Med data;
-  MedNode prev;
-  MedNode next;
+  PatientNode() {
+    prev = null;
+    next = null;
+  }
 
-  public MedNode(Med data) {
+  PatientNode(Patient data) {
     this.data = data;
     prev = null;
     next = null;
@@ -15,17 +19,17 @@ class MedNode {
 }
 
 
-public class MedDB {
-  MedNode head;
-  MedNode tail;
+public class PatientDB {
+  PatientNode head;
+  PatientNode tail;
 
-  public MedDB() {
+  public PatientDB() {
     head = null;
     tail = null;
   }
 
-  private void push(Med newData) {
-    MedNode temp = new MedNode(newData);
+  private void push(Patient newData) {
+    PatientNode temp = new PatientNode(newData);
     temp.next = head;
     temp.prev = null;
 
@@ -40,7 +44,7 @@ public class MedDB {
     head = temp;
   }
 
-  private void delNode(MedNode temp) {
+  private void delNode(PatientNode temp) {
     if (head == null || temp == null) {
       return;
     }
@@ -64,8 +68,8 @@ public class MedDB {
     return;
   }
 
-  private MedNode searchNode(String name) {
-    MedNode temp = head;
+  private PatientNode searchNode(String name) {
+    PatientNode temp = head;
 
     while (temp != null) {
       if (temp.data.getName() == name) {
@@ -79,7 +83,7 @@ public class MedDB {
   }
 
   public void printData() {
-    MedNode temp = head;
+    PatientNode temp = head;
     int index = 1;
 
     while (temp != null) {
@@ -91,18 +95,19 @@ public class MedDB {
     }
   }
 
-  public void insert(String name, String ID, double price, int quantity) {
-    Med newData = new Med(name, ID, price, quantity);
+  public void insert(String PID, String NID, String name, int age, boolean gender, String DoB,
+  String PoB, String addr) {
+    Patient newData = new Patient(PID, NID, name, age, gender, DoB, PoB, addr);
     push(newData);
   }
 
   public void remove(String name) {
-    MedNode temp = searchNode(name);
+    PatientNode temp = searchNode(name);
     delNode(temp);
   }
 
   public void search(String name) {
-    MedNode temp = searchNode(name);
+    PatientNode temp = searchNode(name);
     temp.data.printInfo();
   }
 }

@@ -10,8 +10,8 @@ public class Patient {
   private String PoB;
   private String addr;
 
-  public Patient(String PID, String NID, String name, int age, boolean gender, String DoB, String PoB,
-      String addr) {
+  public Patient(String PID, String NID, String name, int age, boolean gender, String DoB,
+      String PoB, String addr) {
     this.PID = PID;
     this.NID = NID;
     this.name = name;
@@ -84,5 +84,11 @@ public class Patient {
 
   public void setAddr(String addr) {
     this.addr = addr;
+  }
+
+  public void printInfo() {
+    System.out.print("Name: " + name + ", Age: " + age + ", Gender: " + gender + ", Patient ID: "
+        + PID + ", National ID: " + NID + ", Date of birth: " + DoB + ", Place of birth: " + PoB
+        + ", Address: " + addr);
   }
 }

@@ -1,13 +1,17 @@
 package clinic.database;
+import clinic.entities.Doctor;
 
-import clinic.entities.Med;;
+class DocNode {
+  Doctor data;
+  DocNode prev;
+  DocNode next;
 
-class MedNode {
-  Med data;
-  MedNode prev;
-  MedNode next;
+  DocNode() {
+    prev = null;
+    next = null;
+  }
 
-  public MedNode(Med data) {
+  DocNode(Doctor data) {
     this.data = data;
     prev = null;
     next = null;
@@ -15,17 +19,17 @@ class MedNode {
 }
 
 
-public class MedDB {
-  MedNode head;
-  MedNode tail;
+public class DoctorDB {
+  DocNode head;
+  DocNode tail;
 
-  public MedDB() {
+  public DoctorDB() {
     head = null;
     tail = null;
   }
 
-  private void push(Med newData) {
-    MedNode temp = new MedNode(newData);
+  private void push(Doctor newData) {
+    DocNode temp = new DocNode(newData);
     temp.next = head;
     temp.prev = null;
 
@@ -40,7 +44,7 @@ public class MedDB {
     head = temp;
   }
 
-  private void delNode(MedNode temp) {
+  private void delNode(DocNode temp) {
     if (head == null || temp == null) {
       return;
     }
@@ -64,8 +68,8 @@ public class MedDB {
     return;
   }
 
-  private MedNode searchNode(String name) {
-    MedNode temp = head;
+  private DocNode searchNode(String name) {
+    DocNode temp = head;
 
     while (temp != null) {
       if (temp.data.getName() == name) {
@@ -79,7 +83,7 @@ public class MedDB {
   }
 
   public void printData() {
-    MedNode temp = head;
+    DocNode temp = head;
     int index = 1;
 
     while (temp != null) {
@@ -91,18 +95,18 @@ public class MedDB {
     }
   }
 
-  public void insert(String name, String ID, double price, int quantity) {
-    Med newData = new Med(name, ID, price, quantity);
+  public void insert(String name, String ID, String pos) {
+    Doctor newData = new Doctor(name, ID, pos);
     push(newData);
   }
 
   public void remove(String name) {
-    MedNode temp = searchNode(name);
+    DocNode temp = searchNode(name);
     delNode(temp);
   }
 
   public void search(String name) {
-    MedNode temp = searchNode(name);
+    DocNode temp = searchNode(name);
     temp.data.printInfo();
   }
 }

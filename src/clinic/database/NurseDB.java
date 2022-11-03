@@ -1,13 +1,17 @@
 package clinic.database;
+import clinic.entities.Nurse;
 
-import clinic.entities.Med;;
+class NurNode {
+  Nurse data;
+  NurNode prev;
+  NurNode next;
 
-class MedNode {
-  Med data;
-  MedNode prev;
-  MedNode next;
+  NurNode() {
+    prev = null;
+    next = null;
+  }
 
-  public MedNode(Med data) {
+  NurNode(Nurse data) {
     this.data = data;
     prev = null;
     next = null;
@@ -15,17 +19,17 @@ class MedNode {
 }
 
 
-public class MedDB {
-  MedNode head;
-  MedNode tail;
+public class NurseDB {
+  NurNode head;
+  NurNode tail;
 
-  public MedDB() {
+  public NurseDB() {
     head = null;
     tail = null;
   }
 
-  private void push(Med newData) {
-    MedNode temp = new MedNode(newData);
+  private void push(Nurse newData) {
+    NurNode temp = new NurNode(newData);
     temp.next = head;
     temp.prev = null;
 
@@ -40,7 +44,7 @@ public class MedDB {
     head = temp;
   }
 
-  private void delNode(MedNode temp) {
+  private void delNode(NurNode temp) {
     if (head == null || temp == null) {
       return;
     }
@@ -64,8 +68,8 @@ public class MedDB {
     return;
   }
 
-  private MedNode searchNode(String name) {
-    MedNode temp = head;
+  private NurNode searchNode(String name) {
+    NurNode temp = head;
 
     while (temp != null) {
       if (temp.data.getName() == name) {
@@ -79,7 +83,7 @@ public class MedDB {
   }
 
   public void printData() {
-    MedNode temp = head;
+    NurNode temp = head;
     int index = 1;
 
     while (temp != null) {
@@ -91,18 +95,18 @@ public class MedDB {
     }
   }
 
-  public void insert(String name, String ID, double price, int quantity) {
-    Med newData = new Med(name, ID, price, quantity);
+  public void insert(String name, String ID, String pos) {
+    Nurse newData = new Nurse(name, ID, pos);
     push(newData);
   }
 
   public void remove(String name) {
-    MedNode temp = searchNode(name);
+    NurNode temp = searchNode(name);
     delNode(temp);
   }
 
   public void search(String name) {
-    MedNode temp = searchNode(name);
+    NurNode temp = searchNode(name);
     temp.data.printInfo();
   }
 }
