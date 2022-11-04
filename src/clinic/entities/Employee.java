@@ -1,13 +1,13 @@
 package clinic.entities;
 
 interface Employee {
-  public String getName();
+  String getName();
 
-  public String getID();
+  String getID();
 
-  public void setName(String name);
+  void setName(String name);
 
-  public void setID(String ID);
+  void setID(String ID);
 
-  public abstract void printInfo();
+  void printInfo();
 }
