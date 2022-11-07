@@ -7,7 +7,7 @@ CREATE TABLE `clinic`.`doctor` (
   `name` VARCHAR(45) NULL,
   `position` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX ID_UNIQUE (`id` ASC) VISIBLE);
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
   
   INSERT INTO `clinic`.`doctor` VALUES('021547', 'Emma Wattson', 'Surgeon');
   INSERT INTO `clinic`.`doctor` VALUES('000125', 'William Jackson', 'Psychologist');
@@ -22,7 +22,7 @@ CREATE TABLE `clinic`.`nurse` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
   
-  CREATE TABLE `clinic`.`medicine` (
+CREATE TABLE `clinic`.`medicine` (
   `id` VARCHAR(10) NOT NULL,
   `name` VARCHAR(45) NULL,
   `price` DOUBLE NULL,
