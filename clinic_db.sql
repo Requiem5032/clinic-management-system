@@ -8,12 +8,6 @@ CREATE TABLE `clinic`.`doctor` (
   `position` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
-  
-  INSERT INTO `clinic`.`doctor` VALUES('021547', 'Emma Wattson', 'Surgeon');
-  INSERT INTO `clinic`.`doctor` VALUES('000125', 'William Jackson', 'Psychologist');
-  INSERT INTO `clinic`.`doctor` VALUES('059845', 'Michael Brown', 'Cardiologist');
-  INSERT INTO `clinic`.`doctor` VALUES('026584', 'Oliver White', 'Anesthesiologist');
-  INSERT INTO `clinic`.`doctor` VALUES('106524', 'Noah Walker', 'Dermatologist');
 
 CREATE TABLE `clinic`.`nurse` (
   `id` VARCHAR(10) NOT NULL,
@@ -42,3 +36,18 @@ CREATE TABLE `clinic`.`patient` (
   PRIMARY KEY (`pid`),
   UNIQUE INDEX `pid_UNIQUE` (`pid` ASC) VISIBLE);
 
+/*
+INSERT INTO `clinic`.`doctor` VALUES('021547', 'Emma Wattson', 'Surgeon');
+INSERT INTO `clinic`.`doctor` VALUES('000125', 'William Jackson', 'Psychologist');
+INSERT INTO `clinic`.`doctor` VALUES('059845', 'Michael Brown', 'Cardiologist');
+INSERT INTO `clinic`.`doctor` VALUES('026584', 'Oliver White', 'Anesthesiologist');
+INSERT INTO `clinic`.`doctor` VALUES('106524', 'Noah Walker', 'Dermatologist');
+*/
+
+/*  
+SET GLOBAL local_infile = 1;
+
+LOAD DATA LOCAL INFILE 'D:\\Workspaces\\Java\\java-project\\nurse_info.csv' INTO TABLE `clinic`.`nurse`
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n';
+*/
