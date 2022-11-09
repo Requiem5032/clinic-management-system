@@ -49,5 +49,11 @@ SET GLOBAL local_infile = 1;
 
 LOAD DATA LOCAL INFILE 'D:\\Workspaces\\Java\\java-project\\nurse_info.csv' INTO TABLE `clinic`.`nurse`
 FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n';
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE 'D:/Workspaces/Java/java-project/medicine_info.csv' INTO TABLE `clinic`.`medicine`
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
 */
