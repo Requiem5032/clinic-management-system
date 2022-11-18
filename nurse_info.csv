@@ -1,6 +1,6 @@
-﻿ID,Name,Position
-N587463,Amelia Moore,Head nurse
-N213654,Sophia Harris,Emergency room nurse
-N002458,Isabella White,Intensive care unit
-N130547,Charlotte Thompson,Medical-surgical nurse
-N503684,Evelyn Thomas,Licensed practical nurse
+﻿ID,First name,Last name,Position
+N587463,Amelia,Moore,Head nurse
+N213654,Sophia,Harris,Emergency room nurse
+N002458,Isabella,White,Intensive care unit
+N130547,Charlotte,Thompson,Medical-surgical nurse
+N503684,Evelyn,Thomas,Licensed practical nurse

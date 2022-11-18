@@ -1,4 +1,4 @@
-package clinic.entities;
+package clinic.models;
 
 public class Med {
   private String name;
@@ -6,9 +6,9 @@ public class Med {
   private double price;
   private int quantity;
 
-  public Med(String name, String ID, double price, int quantity) {
-    this.name = name;
+  public Med(String ID, String name, double price, int quantity) {
     this.ID = ID;
+    this.name = name;
     this.price = price;
     this.quantity = quantity;
   }

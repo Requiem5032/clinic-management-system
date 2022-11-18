@@ -4,14 +4,16 @@ USE `clinic`;
 
 CREATE TABLE `clinic`.`doctor` (
   `id` VARCHAR(10) NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   `position` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
 
 CREATE TABLE `clinic`.`nurse` (
   `id` VARCHAR(10) NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   `position` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
@@ -27,33 +29,33 @@ CREATE TABLE `clinic`.`medicine` (
 CREATE TABLE `clinic`.`patient` (
   `pid` VARCHAR(10) NOT NULL,
   `nid` VARCHAR(10) NULL,
-  `name` VARCHAR(45) NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   `age` INT NULL,
   `gender` TINYINT(1) NULL,
-  `dob` DATE NULL,
-  `pob` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
+  `address` VARCHAR(100) NULL,
   PRIMARY KEY (`pid`),
   UNIQUE INDEX `pid_UNIQUE` (`pid` ASC) VISIBLE);
 
-/*
-INSERT INTO `clinic`.`doctor` VALUES('021547', 'Emma Wattson', 'Surgeon');
-INSERT INTO `clinic`.`doctor` VALUES('000125', 'William Jackson', 'Psychologist');
-INSERT INTO `clinic`.`doctor` VALUES('059845', 'Michael Brown', 'Cardiologist');
-INSERT INTO `clinic`.`doctor` VALUES('026584', 'Oliver White', 'Anesthesiologist');
-INSERT INTO `clinic`.`doctor` VALUES('106524', 'Noah Walker', 'Dermatologist');
-*/
-
-/*  
 SET GLOBAL local_infile = 1;
 
-LOAD DATA LOCAL INFILE 'D:\\Workspaces\\Java\\java-project\\nurse_info.csv' INTO TABLE `clinic`.`nurse`
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/doctor_info.csv' INTO TABLE `clinic`.`doctor`
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'D:/Workspaces/Java/java-project/medicine_info.csv' INTO TABLE `clinic`.`medicine`
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/nurse_info.csv' INTO TABLE `clinic`.`nurse`
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
-*/
+
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/medicine_info.csv' INTO TABLE `clinic`.`medicine`
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/patient_info.csv' INTO TABLE `clinic`.`patient`
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 ROWS;
