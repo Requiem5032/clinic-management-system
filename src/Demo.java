@@ -2,6 +2,7 @@ import clinic.DAO.*;
 import clinic.DAOimpl.*;
 import clinic.models.*;
 import java.util.*;
+
 public class Demo {
   public static void main(String[] args) throws Exception {
     List<Patient> patientList;
