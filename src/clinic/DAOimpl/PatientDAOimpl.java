@@ -1,13 +1,14 @@
-package clinic.DAOimpl;
+package clinic.daoimpl;
 
 import clinic.connection.DBConnection;
-import clinic.DAO.PatientDAO;
+import clinic.dao.Dao;
 import clinic.models.Patient;
 import java.sql.*;
 import java.util.*;
 
-public class PatientDAOimpl implements PatientDAO {
+public class PatientDaoImpl implements Dao<Patient> {
   Connection con;
+
   @Override
   public Patient get(String id) throws SQLException {
     con = DBConnection.createDBConnection();

@@ -1,12 +1,12 @@
-package clinic.DAOimpl;
+package clinic.daoimpl;
 
 import clinic.connection.DBConnection;
-import clinic.DAO.MedDAO;
+import clinic.dao.Dao;
 import clinic.models.Med;
 import java.sql.*;
 import java.util.*;
 
-public class MedDAOimpl implements MedDAO {
+public class MedDaoImpl implements Dao<Med> {
   Connection con;
 
   @Override

@@ -1,9 +1,9 @@
-package clinic.DAO;
+package clinic.dao;
 
 import java.sql.SQLException;
 import java.util.*;
 
-public interface EmployeeDAO<T> {
+public interface Dao<T> {
   T get(String id) throws SQLException;
 
   List<T> getAll() throws SQLException;
