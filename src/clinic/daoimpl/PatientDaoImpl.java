@@ -2,7 +2,7 @@ package clinic.daoimpl;
 
 import clinic.connection.DBConnection;
 import clinic.dao.Dao;
-import clinic.models.Patient;
+import clinic.model.Patient;
 import java.sql.*;
 import java.util.*;
 

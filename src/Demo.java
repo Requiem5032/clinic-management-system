@@ -1,6 +1,6 @@
 import clinic.dao.*;
 import clinic.daoimpl.*;
-import clinic.models.*;
+import clinic.model.*;
 import java.util.*;
 
 public class Demo {
