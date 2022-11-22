@@ -1,18 +1,19 @@
-package clinic.dao;
+package clinic.dao.impl;
 
 import clinic.connection.DBConnection;
-import clinic.model.Nurse;
+import clinic.dao.Dao;
+import clinic.model.Doctor;
 import java.sql.*;
 import java.util.*;
 
-public class NurseDaoImpl implements Dao<Nurse> {
+public class DoctorDaoImpl implements Dao<Doctor> {
   Connection con;
 
   @Override
-  public Nurse get(String id) throws SQLException {
+  public Doctor get(String id) throws SQLException {
     con = DBConnection.createDBConnection();
-    Nurse nurse = null;
-    String query = "SELECT * FROM  `clinic`.`nurse` WHERE `id` = ?";
+    Doctor doc = null;
+    String query = "SELECT * FROM  `clinic`.`doctor` WHERE `id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, id);
@@ -20,23 +21,23 @@ public class NurseDaoImpl implements Dao<Nurse> {
     ResultSet rs = ps.executeQuery();
 
     if (rs.next()) {
-      String nurseID = rs.getString("id");
+      String doctorID = rs.getString("id");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      nurse = new Nurse(nurseID, firstName, lastName, position);
+      doc = new Doctor(doctorID, firstName, lastName, position);
     }
 
-    return nurse;
+    return doc;
   }
 
   @Override
-  public List<Nurse> getAll() throws SQLException {
+  public List<Doctor> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "SELECT * FROM `clinic`.`nurse`";
+    String query = "SELECT * FROM `clinic`.`doctor`";
     
-    List<Nurse> nurse = new ArrayList<>();
+    List<Doctor> docList = new ArrayList<>();
 
     Statement stmt = con.createStatement();
 
@@ -48,18 +49,18 @@ public class NurseDaoImpl implements Dao<Nurse> {
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      Nurse nurseObj = new Nurse(id, firstName, lastName, position);
+      Doctor docObj = new Doctor(id, firstName, lastName, position);
 
-      nurse.add(nurseObj);
+      docList.add(docObj);
     }
 
-    return nurse;
+    return docList;
   }
 
   @Override
-  public int insert(Nurse object) throws SQLException {
+  public int insert(Doctor object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "INSERT INTO `clinic`.`nurse` (`id`, `first_name`, `last_name`, `position`) VALUES (?, ?, ?, ?)";
+    String query = "INSERT INTO `clinic`.`doctor` (`id`, `first_name`, `last_name`, `position`) VALUES (?, ?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getID());
@@ -76,10 +77,10 @@ public class NurseDaoImpl implements Dao<Nurse> {
   }
   
   @Override
-  public int delete(Nurse object) throws SQLException {
+  public int delete(Doctor object) throws SQLException {
     con = DBConnection.createDBConnection();
 
-    String query = "DELETE FROM `clinic`.`nurse` WHERE `id` = ?";
+    String query = "DELETE FROM `clinic`.`doctor` WHERE `id` = ?";
     
     PreparedStatement ps = con.prepareStatement(query);
 
