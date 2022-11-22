@@ -1,5 +1,4 @@
 import clinic.dao.*;
-import clinic.daoimpl.*;
 import clinic.model.*;
 import java.util.*;
 
