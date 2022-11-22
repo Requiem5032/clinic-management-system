@@ -1,18 +1,18 @@
 package clinic.model;
 
 public class Patient {
-  private String PID;
-  private String NID;
+  private String pid;
+  private String nid;
   private String firstName;
   private String lastName;
   private int age;
   private boolean gender;
   private String addr;
 
-  public Patient(String PID, String NID, String firstName, String lastName, int age, boolean gender,
+  public Patient(String pid, String nid, String firstName, String lastName, int age, boolean gender,
       String addr) {
-    this.PID = PID;
-    this.NID = NID;
+    this.pid = pid;
+    this.nid = nid;
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
@@ -20,12 +20,12 @@ public class Patient {
     this.addr = addr;
   }
 
-  public String getPID() {
-    return PID;
+  public String getPid() {
+    return pid;
   }
 
-  public String getNID() {
-    return NID;
+  public String getNid() {
+    return nid;
   }
 
   public String getFirstName() {
@@ -48,12 +48,12 @@ public class Patient {
     return addr;
   }
 
-  public void setPID(String PID) {
-    this.PID = PID;
+  public void setpid(String pid) {
+    this.pid = pid;
   }
 
-  public void setNID(String NID) {
-    this.NID = NID;
+  public void setnid(String nid) {
+    this.nid = nid;
   }
 
   public void setFirstName(String firstName) {
@@ -74,19 +74,5 @@ public class Patient {
 
   public void setAddr(String addr) {
     this.addr = addr;
-  }
-
-  public void printInfo() {
-    System.out.println("Patient ID: " + PID);
-    System.out.println("National ID: " + NID);
-    System.out.println("First name: " + firstName);
-    System.out.println("Last name: " + lastName);
-    System.out.println("Age: " + age);
-    if (gender == true) {
-      System.out.println("Gender: Male");
-    } else {
-      System.out.println("Gender: Female");
-    }
-    System.out.println("Address: " + addr);
   }
 }

@@ -44,11 +44,4 @@ public class Employee {
   public void setPosition(String position) {
     this.position = position;
   }
-
-  public void printInfo() {
-    System.out.println("ID: " + this.id);
-    System.out.println("First name: " + this.firstName);
-    System.out.println("Last name: " + this.lastName);
-    System.out.println("Position: " + this.position);
-  }
 }

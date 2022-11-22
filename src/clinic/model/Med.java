@@ -44,11 +44,4 @@ public class Med {
   public void setQuantity(int quantity) {
     this.quantity = quantity;
   }
-
-  public void printInfo() {
-    System.out.print("Name: " + name);
-    System.out.print(", ID: " + ID);
-    System.out.print(", Price: " + price + "$");
-    System.out.print(", Quantity: " + quantity + " Box(es)");
-  }
 }

@@ -1,25 +1,15 @@
-import clinic.dao.*;
-import clinic.dao.impl.*;
-import clinic.model.*;
-import java.util.*;
+import clinic.controller.*;
 
 public class Demo {
   public static void main(String[] args) throws Exception {
-    List<Doctor> doctorList;
+    DoctorController doctorCtrl = new DoctorController();
+    MedController medCtrl = new MedController();
+    NurseController nurseCtrl = new NurseController();
+    PatientController patientCtrl = new PatientController();
 
-    Dao<Doctor> doctorDao = new DoctorDaoImpl();
-
-    doctorList = doctorDao.getAll();
-
-    for (Doctor doctorObj : doctorList) {
-      doctorObj.printInfo();
-      System.out.println();
-    }
-
-    System.out.println();
-
-    Doctor d1 = doctorDao.get("D035157");
-
-    d1.printInfo();
+    doctorCtrl.showList();
+    medCtrl.showList();
+    nurseCtrl.showList();
+    patientCtrl.showList();
   }
 }

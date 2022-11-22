@@ -70,8 +70,8 @@ public class PatientDaoImpl implements Dao<Patient> {
     String query = "INSERT INTO `clinic`.`patient` (`pid`, `nid`, `first_name`, `last_name`, `age`, `gender`, `address`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, object.getPID());
-    ps.setString(2, object.getNID());
+    ps.setString(1, object.getPid());
+    ps.setString(2, object.getNid());
     ps.setString(3, object.getFirstName());
     ps.setString(4, object.getLastName());
     ps.setInt(5, object.getAge());
@@ -94,7 +94,7 @@ public class PatientDaoImpl implements Dao<Patient> {
     
     PreparedStatement ps = con.prepareStatement(query);
 
-    ps.setString(1, object.getPID());
+    ps.setString(1, object.getPid());
 
     int result = ps.executeUpdate();
 
