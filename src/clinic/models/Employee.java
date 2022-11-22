@@ -1,21 +1,54 @@
 package clinic.models;
 
-public interface Employee {
-  String getID();
+public class Employee {
+  private String id;
+  private String firstName;
+  private String lastName;
+  private String position;
 
-  String getFirstName();
+  public Employee(String id, String firstName, String lastName, String position) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.position = position;
+  }
 
-  String getLastName();
+  public String getID() {
+    return id;
+  }
 
-  String getPosition();
+  public String getFirstName() {
+    return firstName;
+  }
 
-  void setID(String ID);
+  public String getLastName() {
+    return lastName;
+  }
 
-  void setFirstName(String firstName);
+  public String getPosition() {
+    return position;
+  }
 
-  void setLastName(String lastName);
+  public void setID(String id) {
+    this.id = id;
+  }
 
-  void setPosition(String position);
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-  void printInfo();
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public void setPosition(String position) {
+    this.position = position;
+  }
+
+  public void printInfo() {
+    System.out.println("ID: " + this.id);
+    System.out.println("First name: " + this.firstName);
+    System.out.println("Last name: " + this.lastName);
+    System.out.println("Position: " + this.position);
+  }
 }

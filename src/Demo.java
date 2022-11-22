@@ -7,12 +7,19 @@ public class Demo {
   public static void main(String[] args) throws Exception {
     List<Doctor> doctorList;
 
-    Dao<Doctor> doctorDAO = new DoctorDaoImpl();
+    Dao<Doctor> doctorDao = new DoctorDaoImpl();
 
-    doctorList = doctorDAO.getAll();
+    doctorList = doctorDao.getAll();
 
     for (Doctor doctorObj : doctorList) {
       doctorObj.printInfo();
+      System.out.println();
     }
+
+    System.out.println();
+
+    Doctor d1 = doctorDao.get("D035157");
+
+    d1.printInfo();
   }
 }
