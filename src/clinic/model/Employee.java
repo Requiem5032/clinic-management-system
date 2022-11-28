@@ -4,13 +4,11 @@ public class Employee {
   private String id;
   private String firstName;
   private String lastName;
-  private String position;
 
-  public Employee(String id, String firstName, String lastName, String position) {
+  public Employee(String id, String firstName, String lastName) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.position = position;
   }
 
   public String getID() {
@@ -25,10 +23,6 @@ public class Employee {
     return lastName;
   }
 
-  public String getPosition() {
-    return position;
-  }
-
   public void setID(String id) {
     this.id = id;
   }
@@ -39,9 +33,5 @@ public class Employee {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-  public void setPosition(String position) {
-    this.position = position;
   }
 }

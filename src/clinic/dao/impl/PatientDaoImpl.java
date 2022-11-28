@@ -87,6 +87,28 @@ public class PatientDaoImpl implements Dao<Patient> {
   }
 
   @Override
+  public int update(Patient object) throws SQLException {
+    con = DBConnection.createDBConnection();
+    String query = "UPDATE `clinic`.`patient` SET `nid` = ?, `first_name` = ?, `last_name` = ?, `age` = ?, `gender` = ?, `address` = ? WHERE `pid` = ?";
+
+    PreparedStatement ps = con.prepareStatement(query);
+    ps.setString(1, object.getNid());
+    ps.setString(2, object.getFirstName());
+    ps.setString(3, object.getLastName());
+    ps.setInt(4, object.getAge());
+    ps.setBoolean(5, object.getGender());
+    ps.setString(6, object.getAddr());
+    ps.setString(7, object.getPid());
+
+    int result = ps.executeUpdate();
+
+    DBConnection.closePreparedStatement(ps);
+    DBConnection.closeConnection(con);
+
+    return result;
+  }
+
+  @Override
   public int delete(Patient object) throws SQLException {
     con = DBConnection.createDBConnection();
 

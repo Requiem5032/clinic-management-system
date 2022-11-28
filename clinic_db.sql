@@ -2,18 +2,21 @@ CREATE DATABASE `clinic`;
 
 USE `clinic`;
 
-CREATE TABLE `clinic`.`doctor` (
+CREATE TABLE `clinic`.`employee` (
   `id` VARCHAR(10) NOT NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+
+CREATE TABLE `clinic`.`doctor` (
+  `id` VARCHAR(10) NOT NULL,
   `position` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
 
 CREATE TABLE `clinic`.`nurse` (
   `id` VARCHAR(10) NOT NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
   `position` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
@@ -38,6 +41,11 @@ CREATE TABLE `clinic`.`patient` (
   UNIQUE INDEX `pid_UNIQUE` (`pid` ASC) VISIBLE);
 
 SET GLOBAL local_infile = 1;
+
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/employee_info.csv' INTO TABLE `clinic`.`employee`
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
 
 LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/doctor_info.csv' INTO TABLE `clinic`.`doctor`
 FIELDS TERMINATED BY ','

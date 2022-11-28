@@ -12,8 +12,9 @@ public class NurseDaoImpl implements Dao<Nurse> {
   @Override
   public Nurse get(String id) throws SQLException {
     con = DBConnection.createDBConnection();
-    Nurse nurse = null;
-    String query = "SELECT * FROM  `clinic`.`nurse` WHERE `id` = ?";
+    Nurse nur = null;
+    String query =
+        "SELECT `employee`.`id`, `employee`.`first_name`, `employee`.`last_name`, `nurse`.`position` FROM `clinic`.`nurse` INNER JOIN `clinic`.`employee` ON `employee`.`id` = `nurse`.`id` WHERE `employee`.`id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, id);
@@ -26,47 +27,51 @@ public class NurseDaoImpl implements Dao<Nurse> {
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      nurse = new Nurse(nurseID, firstName, lastName, position);
+      nur = new Nurse(nurseID, firstName, lastName, position);
     }
 
-    return nurse;
+    return nur;
   }
 
   @Override
   public List<Nurse> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "SELECT * FROM `clinic`.`nurse`";
-    
-    List<Nurse> nurse = new ArrayList<>();
+    String query =
+        "SELECT `employee`.`id`, `employee`.`first_name`, `employee`.`last_name`, `nurse`.`position` FROM `clinic`.`nurse` INNER JOIN `clinic`.`employee` ON `employee`.`id` = `nurse`.`id`";
+
+    List<Nurse> nurList = new ArrayList<>();
 
     Statement stmt = con.createStatement();
 
     ResultSet rs = stmt.executeQuery(query);
 
-    while(rs.next()) {
+    while (rs.next()) {
       String id = rs.getString("id");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      Nurse nurseObj = new Nurse(id, firstName, lastName, position);
+      Nurse nurObj = new Nurse(id, firstName, lastName, position);
 
-      nurse.add(nurseObj);
+      nurList.add(nurObj);
     }
 
-    return nurse;
+    return nurList;
   }
 
   @Override
   public int insert(Nurse object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "INSERT INTO `clinic`.`nurse` (`id`, `first_name`, `last_name`, `position`) VALUES (?, ?, ?, ?)";
+
+    String query =
+        "INSERT INTO `clinic`.`employee` (`id`, `first_name`, `last_name`) VALUE (?, ?, ?); INSERT INTO `clinic`.`nurse` (`id`, `position`) VALUES (?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getID());
     ps.setString(2, object.getFirstName());
     ps.setString(3, object.getLastName());
-    ps.setString(4, object.getPosition());
+    ps.setString(4, object.getID());
+    ps.setString(5, object.getPosition());
 
     int result = ps.executeUpdate();
 
@@ -75,16 +80,35 @@ public class NurseDaoImpl implements Dao<Nurse> {
 
     return result;
   }
-  
+
+  @Override
+  public int update(Nurse object) throws SQLException {
+    con = DBConnection.createDBConnection();
+    String query = "UPDATE `clinic`.`nurse` SET `position` = ? WHERE `id` = ?";
+
+    PreparedStatement ps = con.prepareStatement(query);
+
+    ps.setString(1, object.getPosition());
+    ps.setString(2, object.getID());
+
+    int result = ps.executeUpdate();
+
+    DBConnection.closePreparedStatement(ps);
+    DBConnection.closeConnection(con);
+
+    return result;
+  }
+
   @Override
   public int delete(Nurse object) throws SQLException {
     con = DBConnection.createDBConnection();
 
-    String query = "DELETE FROM `clinic`.`nurse` WHERE `id` = ?";
-    
-    PreparedStatement ps = con.prepareStatement(query);
+    String query =
+        "DELETE FROM `clinic`.`employee` WHERE `employee`.`id` = ?; DELETE FROM `clinic`.`nurse` WHERE `nurse`.`id` = ?";
 
+    PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getID());
+    ps.setString(2, object.getID());
 
     int result = ps.executeUpdate();
 

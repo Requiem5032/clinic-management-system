@@ -77,6 +77,25 @@ public class MedDaoImpl implements Dao<Med> {
   }
 
   @Override
+  public int update(Med object) throws SQLException {
+    con = DBConnection.createDBConnection();
+    String query = "UPDATE `clinic`.`medicine` SET `name` = ?, `price` = ?, `quantity` = ? WHERE `id` = ?";
+
+    PreparedStatement ps = con.prepareStatement(query);
+    ps.setString(1, object.getName());
+    ps.setDouble(2, object.getPrice());
+    ps.setInt(3, object.getQuantity());
+    ps.setString(4, object.getID());
+
+    int result = ps.executeUpdate();
+
+    DBConnection.closePreparedStatement(ps);
+    DBConnection.closeConnection(con);
+
+    return result;
+  }
+
+  @Override
   public int delete(Med object) throws SQLException {
     con = DBConnection.createDBConnection();
 

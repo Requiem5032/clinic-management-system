@@ -1,6 +1,6 @@
-﻿ID,First name,Last name,Position
-D203658,William,Jackson,Psychologist
-D578203,Emma,Wattson,Surgeon
-D895305,Oliver,White,Anesthesiologist
-D513054,Michael,Brown,Cardiologist
-D035157,Noah,Walker,Dermatologist
+﻿ID,Position
+D203658,Psychologist
+D578203,Surgeon
+D895305,Anesthesiologist
+D513054,Cardiologist
+D035157,Dermatologist

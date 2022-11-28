@@ -10,11 +10,27 @@ public class DoctorController {
   private Doctor model = null;
   private DoctorView view = new DoctorView();
   private Dao<Doctor> doctorDao = new DoctorDaoImpl();
+  
+  public void showRecord(String id) throws SQLException {
+    view.getInfo(id);
+  }
+
+  public void showList() throws SQLException {
+    view.getList();
+  }
 
   public void insertRecord(String id, String firstName, String lastName, String position) throws SQLException{
     model = new Doctor(id, firstName, lastName, position);
 
     int result = doctorDao.insert(model);
+
+    System.out.println(result);
+  }
+
+  public void updateRecord(String id, String firstName, String lastName, String position) throws SQLException{
+    model = new Doctor(id, firstName, lastName, position);
+
+    int result = doctorDao.update(model);
 
     System.out.println(result);
   }
@@ -25,13 +41,5 @@ public class DoctorController {
     int result = doctorDao.delete(model);
 
     System.out.println(result);
-  }
-
-  public void showRecord(String id) throws SQLException {
-    view.getInfo(id);
-  }
-
-  public void showList() throws SQLException {
-    view.getList();
   }
 }
