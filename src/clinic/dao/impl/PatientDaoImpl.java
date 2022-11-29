@@ -14,7 +14,7 @@ public class PatientDaoImpl implements Dao<Patient> {
     con = DBConnection.createDBConnection();
     Patient patient = null;
 
-    String query = "SELECT * FROM `clinic`.`patient` WHERE `id` = ?";
+    String query = "SELECT * FROM `patient` WHERE `id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, id);
@@ -39,7 +39,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   @Override
   public List<Patient> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "SELECT * FROM `clinic`.`patient`";
+    String query = "SELECT * FROM `patient`";
     
     List<Patient> patient = new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   @Override
   public int insert(Patient object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "INSERT INTO `clinic`.`patient` (`pid`, `nid`, `first_name`, `last_name`, `age`, `gender`, `address`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String query = "INSERT INTO `patient` (`pid`, `nid`, `first_name`, `last_name`, `age`, `gender`, `address`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getPid());
@@ -89,7 +89,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   @Override
   public int update(Patient object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "UPDATE `clinic`.`patient` SET `nid` = ?, `first_name` = ?, `last_name` = ?, `age` = ?, `gender` = ?, `address` = ? WHERE `pid` = ?";
+    String query = "UPDATE `patient` SET `nid` = ?, `first_name` = ?, `last_name` = ?, `age` = ?, `gender` = ?, `address` = ? WHERE `pid` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getNid());
@@ -112,7 +112,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   public int delete(Patient object) throws SQLException {
     con = DBConnection.createDBConnection();
 
-    String query = "DELETE FROM `clinic`.`patient` WHERE `id` = ?";
+    String query = "DELETE FROM `patient` WHERE `id` = ?";
     
     PreparedStatement ps = con.prepareStatement(query);
 

@@ -14,7 +14,7 @@ public class DoctorDaoImpl implements Dao<Doctor> {
     con = DBConnection.createDBConnection();
     Doctor doc = null;
     String query =
-        "SELECT `employee`.`id`, `employee`.`first_name`, `employee`.`last_name`, `doctor`.`position` FROM `clinic`.`doctor` INNER JOIN `clinic`.`employee` ON `employee`.`id` = `doctor`.`id` WHERE `employee`.`id` = ?";
+        "SELECT `employee`.`id`, `employee`.`first_name`, `employee`.`last_name`, `doctor`.`position` FROM `doctor` INNER JOIN `employee` ON `employee`.`id` = `doctor`.`id` WHERE `employee`.`id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, id);
@@ -37,7 +37,7 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   public List<Doctor> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
     String query =
-        "SELECT `employee`.`id`, `employee`.`first_name`, `employee`.`last_name`, `doctor`.`position` FROM `clinic`.`doctor` INNER JOIN `clinic`.`employee` ON `employee`.`id` = `doctor`.`id`";
+        "SELECT `employee`.`id`, `employee`.`first_name`, `employee`.`last_name`, `doctor`.`position` FROM `doctor` INNER JOIN `employee` ON `employee`.`id` = `doctor`.`id`";
 
     List<Doctor> docList = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class DoctorDaoImpl implements Dao<Doctor> {
     con = DBConnection.createDBConnection();
 
     String query =
-        "INSERT INTO `clinic`.`employee` (`id`, `first_name`, `last_name`) VALUE (?, ?, ?); INSERT INTO `clinic`.`doctor` (`id`, `position`) VALUES (?, ?)";
+        "INSERT INTO `employee` (`id`, `first_name`, `last_name`) VALUE (?, ?, ?); INSERT INTO `doctor` (`id`, `position`) VALUES (?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getID());
@@ -84,7 +84,7 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   @Override
   public int update(Doctor object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "UPDATE `clinic`.`doctor` SET `position` = ? WHERE `id` = ?";
+    String query = "UPDATE `doctor` SET `position` = ? WHERE `id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
 
@@ -104,11 +104,10 @@ public class DoctorDaoImpl implements Dao<Doctor> {
     con = DBConnection.createDBConnection();
 
     String query =
-        "DELETE FROM `clinic`.`employee` WHERE `employee`.`id` = ?; DELETE FROM `clinic`.`doctor` WHERE `doctor`.`id` = ?";
+        "DELETE FROM `employee`, `doctor` USING `employee` INNER JOIN `doctor` ON `doctor`.`id` = `employee`.`id` WHERE `employee`.`id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getID());
-    ps.setString(2, object.getID());
 
     int result = ps.executeUpdate();
 

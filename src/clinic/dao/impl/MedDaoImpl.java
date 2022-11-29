@@ -14,7 +14,7 @@ public class MedDaoImpl implements Dao<Med> {
     con = DBConnection.createDBConnection();
     Med med = null;
 
-    String query = "SELECT * FROM `clinic`.`medicine` WHERE `id` = ?";
+    String query = "SELECT * FROM `medicine` WHERE `id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, id);
@@ -35,7 +35,7 @@ public class MedDaoImpl implements Dao<Med> {
   @Override
   public List<Med> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "SELECT * FROM `clinic`.`medicine`";
+    String query = "SELECT * FROM `medicine`";
     
     List<Med> medList = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class MedDaoImpl implements Dao<Med> {
   @Override
   public int insert(Med object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "INSERT INTO `clinic`.`medicine` (`id`, `name`, `price`, `quantity`) VALUES (?, ?, ?, ?)";
+    String query = "INSERT INTO `medicine` (`id`, `name`, `price`, `quantity`) VALUES (?, ?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getID());
@@ -79,7 +79,7 @@ public class MedDaoImpl implements Dao<Med> {
   @Override
   public int update(Med object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "UPDATE `clinic`.`medicine` SET `name` = ?, `price` = ?, `quantity` = ? WHERE `id` = ?";
+    String query = "UPDATE `medicine` SET `name` = ?, `price` = ?, `quantity` = ? WHERE `id` = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getName());
@@ -99,7 +99,7 @@ public class MedDaoImpl implements Dao<Med> {
   public int delete(Med object) throws SQLException {
     con = DBConnection.createDBConnection();
 
-    String query = "DELETE FROM `clinic`.`medicine` WHERE `id` = ?";
+    String query = "DELETE FROM `medicine` WHERE `id` = ?";
     
     PreparedStatement ps = con.prepareStatement(query);
 
