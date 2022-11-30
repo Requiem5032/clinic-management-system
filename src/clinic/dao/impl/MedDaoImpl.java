@@ -35,7 +35,7 @@ public class MedDaoImpl implements Dao<Med> {
   @Override
   public List<Med> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "SELECT * FROM medicine";
+    String query = "SELECT * FROM medicine ORDER BY id ASC";
     
     List<Med> medList = new ArrayList<>();
 

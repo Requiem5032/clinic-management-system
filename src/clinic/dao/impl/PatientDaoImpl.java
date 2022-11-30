@@ -39,7 +39,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   @Override
   public List<Patient> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "SELECT * FROM patient";
+    String query = "SELECT * FROM patient ORDER BY pid ASC";
     
     List<Patient> patient = new ArrayList<>();
 

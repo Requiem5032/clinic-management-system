@@ -37,7 +37,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
   public List<Nurse> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
     String query =
-        "SELECT employee.id, employee.first_name, employee.last_name, nurse.position FROM nurse INNER JOIN employee ON employee.id = nurse.id";
+        "SELECT employee.id, employee.first_name, employee.last_name, nurse.position FROM nurse INNER JOIN employee ON employee.id = nurse.id ORDER BY employee.id ASC";
 
     List<Nurse> nurList = new ArrayList<>();
 
