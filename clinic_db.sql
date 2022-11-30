@@ -1,68 +1,68 @@
-CREATE DATABASE `clinic`;
+CREATE DATABASE clinic;
 
-USE `clinic`;
+USE clinic;
 
-CREATE TABLE `clinic`.`employee` (
-  `id` VARCHAR(10) NOT NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+CREATE TABLE employee (
+  id VARCHAR(10) NOT NULL,
+  first_name VARCHAR(45) NULL,
+  last_name VARCHAR(45) NULL,
+  PRIMARY KEY (id)
+);
 
-CREATE TABLE `clinic`.`doctor` (
-  `id` VARCHAR(10) NOT NULL,
-  `position` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+CREATE TABLE doctor (
+  id VARCHAR(10) NOT NULL,
+  position VARCHAR(45) NULL,
+  FOREIGN KEY (id) REFERENCES employee(id)
+);
 
-CREATE TABLE `clinic`.`nurse` (
-  `id` VARCHAR(10) NOT NULL,
-  `position` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+CREATE TABLE nurse (
+  id VARCHAR(10) NOT NULL,
+  position VARCHAR(45) NULL,
+  FOREIGN KEY (id) REFERENCES employee(id)
+);
   
-CREATE TABLE `clinic`.`medicine` (
-  `id` VARCHAR(10) NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `price` DOUBLE NULL,
-  `quantity` INT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+CREATE TABLE medicine (
+  id VARCHAR(10) NOT NULL,
+  name VARCHAR(45) NULL,
+  price DOUBLE NULL,
+  quantity INT NULL,
+  PRIMARY KEY (id)
+);
 
-CREATE TABLE `clinic`.`patient` (
-  `pid` VARCHAR(10) NOT NULL,
-  `nid` VARCHAR(10) NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `age` INT NULL,
-  `gender` TINYINT(1) NULL,
-  `address` VARCHAR(100) NULL,
-  PRIMARY KEY (`pid`),
-  UNIQUE INDEX `pid_UNIQUE` (`pid` ASC) VISIBLE);
+CREATE TABLE patient (
+  pid VARCHAR(10) NOT NULL,
+  nid VARCHAR(10) NULL,
+  first_name VARCHAR(45) NULL,
+  last_name VARCHAR(45) NULL,
+  age INT NULL,
+  gender TINYINT(1) NULL,
+  address VARCHAR(100) NULL,
+  PRIMARY KEY (pid)
+);
 
 SET GLOBAL local_infile = 1;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/employee_info.csv' INTO TABLE `clinic`.`employee`
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/employee_info.csv' INTO TABLE employee
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/doctor_info.csv' INTO TABLE `clinic`.`doctor`
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/doctor_info.csv' INTO TABLE doctor
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/nurse_info.csv' INTO TABLE `clinic`.`nurse`
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/nurse_info.csv' INTO TABLE nurse
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/medicine_info.csv' INTO TABLE `clinic`.`medicine`
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/medicine_info.csv' INTO TABLE medicine
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/patient_info.csv' INTO TABLE `clinic`.`patient`
+LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/patient_info.csv' INTO TABLE patient
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
