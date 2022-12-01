@@ -3,20 +3,21 @@ package clinic.controller;
 import clinic.dao.*;
 import clinic.dao.impl.*;
 import clinic.model.Patient;
-import clinic.view.PatientView;
 import java.sql.SQLException;
+import java.util.*;
 
 public class PatientController {
   private Patient model = null;
-  private PatientView view = new PatientView();
   private Dao<Patient> patientDao = new PatientDaoImpl();
 
-  public void showRecord(String id) throws SQLException {
-    view.getInfo(id);
+  public ArrayList<String> getRecord(String id) throws SQLException {
+    ArrayList<String> data = patientDao.getArrayList(id);
+    return data;
   }
 
-  public void showList() throws SQLException {
-    view.getList();
+  public ArrayList<ArrayList<String>> getList() throws SQLException {
+    ArrayList<ArrayList<String>> data = patientDao.getAll();
+    return data;
   }
 
   public void insertRecord(String pid, String nid, String firstName, String lastName, int age,

@@ -32,29 +32,53 @@ public class MedDaoImpl implements Dao<Med> {
 
     return med;
   }
+
   @Override
-  public List<Med> getAll() throws SQLException {
+  public ArrayList<String> getArrayList(String id) throws SQLException{
+    Med model = get(id);
+    ArrayList<String> data = new ArrayList<String>();
+    data.add(model.getID());
+    data.add(model.getName());
+    double tempPrice = model.getPrice();
+    data.add(Double.toString(tempPrice));
+    int tempQuantity = model.getQuantity();
+    data.add(Integer.toString(tempQuantity));
+
+    return data;
+  }
+
+  @Override
+  public ArrayList<ArrayList<String>> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
     String query = "SELECT * FROM medicine ORDER BY id ASC";
     
-    List<Med> medList = new ArrayList<>();
-
     Statement stmt = con.createStatement();
 
     ResultSet rs = stmt.executeQuery(query);
+    ResultSetMetaData rsmd = rs.getMetaData();
+
+    int row = rs.getRow();
+    int col = rsmd.getColumnCount();
+
+    ArrayList<ArrayList<String>> objectList = new ArrayList<ArrayList<String>>(row);
 
     while(rs.next()) {
       String medID = rs.getString("id");
       String name = rs.getString("name");
-      double price = rs.getDouble("price");
-      int quantity = rs.getInt("quantity");
+      double tempPrice = rs.getDouble("price");
+      int tempQuantity = rs.getInt("quantity");
+      String price = Double.toString(tempPrice);
+      String quantity = Integer.toString(tempQuantity);
 
-      Med medObj = new Med(medID, name, price, quantity);
-
-      medList.add(medObj);
+      ArrayList<String> temp = new ArrayList<String>(col);
+      temp.add(medID);
+      temp.add(name);
+      temp.add(price);
+      temp.add(quantity);
+      objectList.add(temp);
     }
 
-    return medList;
+    return objectList;
   }
 
   @Override

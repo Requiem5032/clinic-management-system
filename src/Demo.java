@@ -1,5 +1,5 @@
 import clinic.controller.*;
-
+import clinic.view.doctor.*;
 public class Demo {
   public static void main(String[] args) throws Exception {
     DoctorController doctorCtrl = new DoctorController();
@@ -7,12 +7,18 @@ public class Demo {
     MedController medCtrl = new MedController();
     PatientController patientCtrl = new PatientController();
 
+    // Add addData = new Add();
+    // addData.setVisible(true);
+
+    // ShowList retrieveList = new ShowList();
+    // retrieveList.setVisible(true);
+
     // doctorCtrl.insertRecord("test", "test", "test", "test");
     // nurseCtrl.insertRecord("null", "null", "null", "null");
     // medCtrl.insertRecord("null", "null", 0, 0);
     // patientCtrl.insertRecord("null", "null", "null", "null", 0, false, "null");
 
-    // doctorCtrl.deleteRecord("test");
+    doctorCtrl.deleteRecord("1");
     // nurseCtrl.deleteRecord("null");
     // medCtrl.deleteRecord("null");
     // patientCtrl.deleteRecord("null");

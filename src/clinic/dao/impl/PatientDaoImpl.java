@@ -37,37 +37,76 @@ public class PatientDaoImpl implements Dao<Patient> {
   }
 
   @Override
-  public List<Patient> getAll() throws SQLException {
+  public ArrayList<String> getArrayList(String id) throws SQLException{
+    Patient model = get(id);
+    ArrayList<String> data = new ArrayList<String>();
+    data.add(model.getPid());
+    data.add(model.getNid());
+    data.add(model.getFirstName());
+    data.add(model.getLastName());
+    int tempAge = model.getAge();
+    data.add(Integer.toString(tempAge));
+    String gender = null;
+    if (model.getGender() == false) {
+      gender = "Female";
+    } else {
+      gender = "Male";
+    }
+    data.add(gender);
+    data.add(model.getAddr());
+
+    return data;
+  }
+
+  @Override
+  public ArrayList<ArrayList<String>> getAll() throws SQLException {
     con = DBConnection.createDBConnection();
     String query = "SELECT * FROM patient ORDER BY pid ASC";
-    
-    List<Patient> patient = new ArrayList<>();
 
     Statement stmt = con.createStatement();
-
     ResultSet rs = stmt.executeQuery(query);
+    ResultSetMetaData rsmd = rs.getMetaData();
 
-    while(rs.next()) {
+    int row = rs.getRow();
+    int col = rsmd.getColumnCount();
+
+    ArrayList<ArrayList<String>> objectList = new ArrayList<ArrayList<String>>(row);
+
+    while (rs.next()) {
       String PID = rs.getString("pid");
       String NID = rs.getString("nid");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
-      int age = rs.getInt("age");
-      boolean gender = rs.getBoolean("gender");
+      int tempAge = rs.getInt("age");
+      boolean tempGender = rs.getBoolean("gender");
+      String age = Integer.toString(tempAge);
+      String gender;
+      if (tempGender == false) {
+        gender = "Female";
+      } else {
+        gender = "Male";
+      }
       String addr = rs.getString("address");
 
-      Patient patientObj = new Patient(PID, NID, firstName, lastName, age, gender, addr);
-
-      patient.add(patientObj);
+      ArrayList<String> temp = new ArrayList<String>(col);
+      temp.add(PID);
+      temp.add(NID);
+      temp.add(firstName);
+      temp.add(lastName);
+      temp.add(age);
+      temp.add(gender);
+      temp.add(addr);
+      objectList.add(temp);
     }
 
-    return patient;
+    return objectList;
   }
 
   @Override
   public int insert(Patient object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "INSERT INTO patient (pid, nid, first_name, last_name, age, gender, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String query =
+        "INSERT INTO patient (pid, nid, first_name, last_name, age, gender, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getPid());
@@ -89,7 +128,8 @@ public class PatientDaoImpl implements Dao<Patient> {
   @Override
   public int update(Patient object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "UPDATE patient SET nid = ?, first_name = ?, last_name = ?, age = ?, gender = ?, address = ? WHERE pid = ?";
+    String query =
+        "UPDATE patient SET nid = ?, first_name = ?, last_name = ?, age = ?, gender = ?, address = ? WHERE pid = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
     ps.setString(1, object.getNid());
@@ -113,7 +153,7 @@ public class PatientDaoImpl implements Dao<Patient> {
     con = DBConnection.createDBConnection();
 
     String query = "DELETE FROM patient WHERE pid = ?";
-    
+
     PreparedStatement ps = con.prepareStatement(query);
 
     ps.setString(1, object.getPid());

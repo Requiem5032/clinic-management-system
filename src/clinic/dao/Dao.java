@@ -6,7 +6,9 @@ import java.util.*;
 public interface Dao<T> {
   T get(String id) throws SQLException;
 
-  List<T> getAll() throws SQLException;
+  ArrayList<String> getArrayList(String id) throws SQLException;
+
+  ArrayList<ArrayList<String>> getAll() throws SQLException;
 
   int insert(T object) throws SQLException;
 
