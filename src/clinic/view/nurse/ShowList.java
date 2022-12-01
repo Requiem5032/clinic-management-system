@@ -1,11 +1,11 @@
-package clinic.view.doctor;
+package clinic.view.nurse;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
-import clinic.controller.DoctorController;
+import clinic.controller.NurseController;
 
 public class ShowList extends JFrame {
   private JButton backButton;
@@ -16,19 +16,18 @@ public class ShowList extends JFrame {
   private JScrollBar scrollBar;
   private JScrollPane scrollPanel;
 
-  private DoctorController doctorCtrl = new DoctorController();
+  private NurseController nurseCtrl = new NurseController();
 
   public ShowList() throws SQLException {
     initComponents();
   }
 
   private void initComponents() throws SQLException {
-
     backButton = new JButton();
     okButton = new JButton();
 
     tableLabel = new JLabel();
-
+    
     scrollBar = new JScrollBar();
     scrollPanel = new JScrollPane();
 
@@ -44,10 +43,12 @@ public class ShowList extends JFrame {
       }
     });
 
+    java.util.ArrayList<java.util.ArrayList<String>> objectList;
+
+    objectList = nurseCtrl.getList();
+
     DefaultTableModel tableModel = new DefaultTableModel(col, 0);
     JTable dataTable = new JTable(tableModel);
-
-    java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getList();
 
     for (int i = 0; i < objectList.size(); i++) {
       String id = objectList.get(i).get(0);
@@ -62,7 +63,7 @@ public class ShowList extends JFrame {
     scrollPanel.setViewportView(dataTable);
 
     tableLabel.setFont(new Font("Segoe UI", 0, 28));
-    tableLabel.setText("Doctor table ");
+    tableLabel.setText("Nurse table ");
 
     okButton.setText("OK");
     okButton.addActionListener(new ActionListener() {
@@ -71,7 +72,7 @@ public class ShowList extends JFrame {
 
         try {
           tableModel.setRowCount(0);
-          newObjectList = doctorCtrl.getList();
+          newObjectList = nurseCtrl.getList();
 
           for (int i = 0; i < newObjectList.size(); i++) {
             String id = newObjectList.get(i).get(0);
@@ -93,16 +94,15 @@ public class ShowList extends JFrame {
         .addGroup(layout.createSequentialGroup().addGap(30, 30, 30).addComponent(backButton)
             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(
-                    layout.createSequentialGroup().addGap(58, 58, 58).addComponent(tableLabel))
+                .addGroup(layout.createSequentialGroup().addGap(58, 58, 58).addComponent(tableLabel))
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 100,
                             GroupLayout.PREFERRED_SIZE)
                         .addComponent(scrollPanel, GroupLayout.PREFERRED_SIZE, 839,
                             GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(scrollBar,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
                         GroupLayout.PREFERRED_SIZE)))
             .addGap(34, 34, 34)));
     layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)

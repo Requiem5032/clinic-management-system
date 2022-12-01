@@ -1,4 +1,4 @@
-package clinic.view.doctor;
+package clinic.view.nurse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +28,7 @@ public class Add extends JFrame {
     private String lastName;
     private String position;
     
-    private DoctorController doctorCtrl = new DoctorController();
+    private NurseController nurseCtrl = new NurseController();
 
     public Add() {
         initComponents();
@@ -36,10 +36,10 @@ public class Add extends JFrame {
 
     private void initComponents() {
         tableLabel = new JLabel();
+        idLabel = new JLabel();
         firstNameLabel = new JLabel();
         lastNameLabel = new JLabel();
         positionLabel = new JLabel();
-        idLabel = new JLabel();
         noteLabel = new JLabel();
 
         idField = new JTextField();
@@ -61,10 +61,10 @@ public class Add extends JFrame {
         });
 
         tableLabel.setFont(new Font("Segoe UI", 0, 28));
-        tableLabel.setText("Doctor table ");
+        tableLabel.setText("Nurse table ");
 
         idLabel.setFont(new Font("Segoe UI", 0, 28));
-        idLabel.setText("Doctor ID");
+        idLabel.setText("Nurse ID");
 
         firstNameLabel.setFont(new Font("Segoe UI", 0, 28));
         firstNameLabel.setText("First Name");
@@ -76,7 +76,7 @@ public class Add extends JFrame {
         positionLabel.setText("Position");
 
         noteLabel.setForeground(new Color(102, 102, 102));
-        noteLabel.setText("*Add three doctor information");
+        noteLabel.setText("*Add three nurse information");
 
         idField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -106,7 +106,7 @@ public class Add extends JFrame {
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 try {
-                doctorCtrl.insertRecord(id, firstName, lastName, position);
+                nurseCtrl.insertRecord(id, firstName, lastName, position);
                 } catch (SQLException e) {
                     System.out.println(e);
                 }

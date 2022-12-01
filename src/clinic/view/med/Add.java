@@ -1,4 +1,4 @@
-package clinic.view.doctor;
+package clinic.view.med;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,27 +8,27 @@ import clinic.controller.*;
 
 public class Add extends JFrame {
     private JLabel tableLabel;
-    private JLabel firstNameLabel;
-    private JLabel lastNameLabel;
-    private JLabel positionLabel;
+    private JLabel nameLabel;
+    private JLabel priceLabel;
+    private JLabel quantityLabel;
     private JLabel idLabel;
     private JLabel noteLabel;
 
     private JTextField idField;
-    private JTextField firstNameField;
-    private JTextField lastNameField;
-    private JTextField positionField;
+    private JTextField nameField;
+    private JTextField priceField;
+    private JTextField quantityField;
 
     private JButton backButton;
     private JButton okButton;
     private JButton cancelButton;
 
     private String id;
-    private String firstName;
-    private String lastName;
-    private String position;
+    private String name;
+    private double price;
+    private int quantity;
     
-    private DoctorController doctorCtrl = new DoctorController();
+    private MedController medCtrl = new MedController();
 
     public Add() {
         initComponents();
@@ -36,16 +36,16 @@ public class Add extends JFrame {
 
     private void initComponents() {
         tableLabel = new JLabel();
-        firstNameLabel = new JLabel();
-        lastNameLabel = new JLabel();
-        positionLabel = new JLabel();
+        nameLabel = new JLabel();
+        priceLabel = new JLabel();
+        quantityLabel = new JLabel();
         idLabel = new JLabel();
         noteLabel = new JLabel();
 
         idField = new JTextField();
-        firstNameField = new JTextField();
-        lastNameField = new JTextField();
-        positionField = new JTextField();
+        nameField = new JTextField();
+        priceField = new JTextField();
+        quantityField = new JTextField();
 
         backButton = new JButton();
         okButton = new JButton();
@@ -61,22 +61,22 @@ public class Add extends JFrame {
         });
 
         tableLabel.setFont(new Font("Segoe UI", 0, 28));
-        tableLabel.setText("Doctor table ");
+        tableLabel.setText("Med table ");
 
         idLabel.setFont(new Font("Segoe UI", 0, 28));
-        idLabel.setText("Doctor ID");
+        idLabel.setText("Med ID");
 
-        firstNameLabel.setFont(new Font("Segoe UI", 0, 28));
-        firstNameLabel.setText("First Name");
+        nameLabel.setFont(new Font("Segoe UI", 0, 28));
+        nameLabel.setText("Name");
 
-        lastNameLabel.setFont(new Font("Segoe UI", 0, 28));
-        lastNameLabel.setText("Last Name");
+        priceLabel.setFont(new Font("Segoe UI", 0, 28));
+        priceLabel.setText("Price");
 
-        positionLabel.setFont(new Font("Segoe UI", 0, 28));
-        positionLabel.setText("Position");
+        quantityLabel.setFont(new Font("Segoe UI", 0, 28));
+        quantityLabel.setText("Quantity");
 
         noteLabel.setForeground(new Color(102, 102, 102));
-        noteLabel.setText("*Add three doctor information");
+        noteLabel.setText("*Add three med information");
 
         idField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -84,21 +84,21 @@ public class Add extends JFrame {
             }
         });
 
-        firstNameField.addActionListener(new ActionListener() {
+        nameField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                firstName = firstNameField.getText();
+                name = nameField.getText();
             }
         });
 
-        lastNameField.addActionListener(new ActionListener() {
+        priceField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                lastName = lastNameField.getText();
+                price = Double.parseDouble(priceField.getText());
             }
         });
 
-        positionField.addActionListener(new ActionListener() {
+        quantityField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                position = positionField.getText();
+                quantity = Integer.parseInt(quantityField.getText());
             }
         });
 
@@ -106,7 +106,7 @@ public class Add extends JFrame {
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 try {
-                doctorCtrl.insertRecord(id, firstName, lastName, position);
+                medCtrl.insertRecord(id, name, price, quantity);
                 } catch (SQLException e) {
                     System.out.println(e);
                 }
@@ -131,10 +131,10 @@ public class Add extends JFrame {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(firstNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(idLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lastNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(positionLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(priceLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(quantityLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(noteLabel, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -145,9 +145,9 @@ public class Add extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(idField, GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                                    .addComponent(firstNameField)
-                                    .addComponent(lastNameField)
-                                    .addComponent(positionField)))))
+                                    .addComponent(nameField)
+                                    .addComponent(priceField)
+                                    .addComponent(quantityField)))))
                     .addComponent(tableLabel))
                 .addGap(140, 140, 140))
         );
@@ -168,16 +168,16 @@ public class Add extends JFrame {
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(firstNameLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(firstNameField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
                                 .addGap(77, 77, 77)
-                                .addComponent(lastNameField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lastNameLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(priceField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(priceLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
                         .addGap(77, 77, 77)
-                        .addComponent(positionField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(quantityField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(positionLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(quantityLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)))
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
