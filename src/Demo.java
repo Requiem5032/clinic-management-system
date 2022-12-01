@@ -7,14 +7,14 @@ public class Demo {
     MedController medCtrl = new MedController();
     PatientController patientCtrl = new PatientController();
 
-    // clinic.view.doctor.Add addDoc = new clinic.view.doctor.Add();
-    // addDoc.setVisible(true);
+    clinic.view.doctor.Add addDoc = new clinic.view.doctor.Add();
+    addDoc.setVisible(true);
 
-    // clinic.view.nurse.Add addNur = new clinic.view.nurse.Add();
-    // addNur.setVisible(true);
+    clinic.view.nurse.Add addNur = new clinic.view.nurse.Add();
+    addNur.setVisible(true);
 
-    // clinic.view.med.Add addMed = new clinic.view.med.Add();
-    // addMed.setVisible(true);
+    clinic.view.med.Add addMed = new clinic.view.med.Add();
+    addMed.setVisible(true);
 
     clinic.view.doctor.ShowList docList = new clinic.view.doctor.ShowList();
     docList.setVisible(true);
