@@ -10,15 +10,15 @@ public class Demo {
     // Add addData = new Add();
     // addData.setVisible(true);
 
-    // ShowList retrieveList = new ShowList();
-    // retrieveList.setVisible(true);
+    ShowList retrieveList = new ShowList();
+    retrieveList.setVisible(true);
 
     // doctorCtrl.insertRecord("test", "test", "test", "test");
     // nurseCtrl.insertRecord("null", "null", "null", "null");
     // medCtrl.insertRecord("null", "null", 0, 0);
     // patientCtrl.insertRecord("null", "null", "null", "null", 0, false, "null");
 
-    doctorCtrl.deleteRecord("1");
+    // doctorCtrl.deleteRecord("1");
     // nurseCtrl.deleteRecord("null");
     // medCtrl.deleteRecord("null");
     // patientCtrl.deleteRecord("null");

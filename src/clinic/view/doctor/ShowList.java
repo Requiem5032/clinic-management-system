@@ -35,6 +35,7 @@ public class ShowList extends JFrame {
     jButton1.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {}
     });
+
     java.util.ArrayList<java.util.ArrayList<String>> objectList;
 
     objectList = doctorCtrl.getList();
@@ -59,9 +60,7 @@ public class ShowList extends JFrame {
 
     jButton7.setText("OK");
     jButton7.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-        jTable1.setModel(tableModel);
-      }
+      public void actionPerformed(ActionEvent evt) {}
     });
 
     GroupLayout layout = new GroupLayout(getContentPane());
