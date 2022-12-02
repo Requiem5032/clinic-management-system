@@ -4,189 +4,178 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
-import clinic.controller.*;
+import clinic.controller.DoctorController;
 
 public class Add extends JFrame {
-    private JLabel tableLabel;
-    private JLabel firstNameLabel;
-    private JLabel lastNameLabel;
-    private JLabel positionLabel;
-    private JLabel idLabel;
-    private JLabel noteLabel;
+  private JLabel tableLabel;
+  private JLabel idLabel;
+  private JLabel firstNameLabel;
+  private JLabel lastNameLabel;
+  private JLabel positionLabel;
 
-    private JTextField idField;
-    private JTextField firstNameField;
-    private JTextField lastNameField;
-    private JTextField positionField;
+  private JTextField idField;
+  private JTextField firstNameField;
+  private JTextField lastNameField;
+  private JTextField positionField;
 
-    private JButton backButton;
-    private JButton okButton;
-    private JButton cancelButton;
+  private JButton addButton;
+  private JButton cancelButton;
+  private JButton homeButton;
 
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String position;
-    
-    private DoctorController doctorCtrl = new DoctorController();
+  private DoctorController doctorCtrl = new DoctorController();
 
-    public Add() {
-        initComponents();
-    }
+  private Font labelFont;
+  private Font fieldFont;
+  private Font buttonFont;
 
-    private void initComponents() {
-        tableLabel = new JLabel();
-        firstNameLabel = new JLabel();
-        lastNameLabel = new JLabel();
-        positionLabel = new JLabel();
-        idLabel = new JLabel();
-        noteLabel = new JLabel();
+  public Add() {
+    initComponents();
+  }
 
-        idField = new JTextField();
-        firstNameField = new JTextField();
-        lastNameField = new JTextField();
-        positionField = new JTextField();
+  private void initComponents() {
+    tableLabel = new JLabel();
+    idLabel = new JLabel();
+    firstNameLabel = new JLabel();
+    lastNameLabel = new JLabel();
+    positionLabel = new JLabel();
 
-        backButton = new JButton();
-        okButton = new JButton();
-        cancelButton = new JButton();
+    idField = new JTextField();
+    firstNameField = new JTextField();
+    lastNameField = new JTextField();
+    positionField = new JTextField();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    addButton = new JButton();
+    cancelButton = new JButton();
+    homeButton = new JButton();
 
-        backButton.setBackground(new Color(243, 243, 243));
-        backButton.setIcon(new ImageIcon(getClass().getResource("../icon/back-button.png")));
-        backButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            }
-        });
+    labelFont = new Font("Titillium Web", 0, 28);
+    fieldFont = new Font("Titillium Web", 0, 20);
+    buttonFont = new Font("Titillium Web", 0, 16);
 
-        tableLabel.setFont(new Font("Segoe UI", 0, 28));
-        tableLabel.setText("Doctor table ");
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        idLabel.setFont(new Font("Segoe UI", 0, 28));
-        idLabel.setText("Doctor ID");
+    tableLabel.setFont(labelFont);
+    tableLabel.setText("Doctor table ");
 
-        firstNameLabel.setFont(new Font("Segoe UI", 0, 28));
-        firstNameLabel.setText("First Name");
+    idLabel.setFont(labelFont);
+    idLabel.setText("Doctor ID");
 
-        lastNameLabel.setFont(new Font("Segoe UI", 0, 28));
-        lastNameLabel.setText("Last Name");
+    firstNameLabel.setFont(labelFont);
+    firstNameLabel.setText("First Name");
 
-        positionLabel.setFont(new Font("Segoe UI", 0, 28));
-        positionLabel.setText("Position");
+    lastNameLabel.setFont(labelFont);
+    lastNameLabel.setText("Last Name");
 
-        noteLabel.setForeground(new Color(102, 102, 102));
-        noteLabel.setText("*Add three doctor information");
+    positionLabel.setFont(labelFont);
+    positionLabel.setText("Position");
 
-        idField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                id = idField.getText();
-            }
-        });
+    idField.setFont(fieldFont);
+    firstNameField.setFont(fieldFont);
+    lastNameField.setFont(fieldFont);
+    positionField.setFont(fieldFont);
 
-        firstNameField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                firstName = firstNameField.getText();
-            }
-        });
+    addButton.setFont(buttonFont);
+    addButton.setText("Add");
+    addButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+        if (idField.getText().equals("") || firstNameField.getText().equals("")
+            || lastNameField.getText().equals("") || positionField.getText().equals("")) {
+          JOptionPane.showMessageDialog(null, "Please enter all data!");
+        } else {
+          String id = idField.getText();
+          String firstName = firstNameField.getText();
+          String lastName = lastNameField.getText();
+          String position = positionField.getText();
+          try {
+            doctorCtrl.insertRecord(id, firstName, lastName, position);
+            JOptionPane.showMessageDialog(null, "Add data successfully!");
+          } catch (SQLException e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Duplicated entry!");
+          }
+        }
+      }
+    });
 
-        lastNameField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                lastName = lastNameField.getText();
-            }
-        });
+    cancelButton.setFont(buttonFont);
+    cancelButton.setText("Cancel");
+    cancelButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {}
+    });
 
-        positionField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                position = positionField.getText();
-            }
-        });
+    homeButton.setBackground(new Color(243, 243, 243));
+    homeButton.setIcon(new ImageIcon(getClass().getResource("../icon/home.png")));
+    homeButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {}
+    });
 
-        okButton.setText("OK");
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                try {
-                doctorCtrl.insertRecord(id, firstName, lastName, position);
-                } catch (SQLException e) {
-                    System.out.println(e);
-                }
-            }
-        });
-
-        cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                System.exit(0);
-            }
-        });
-
-        GroupLayout layout = new GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(backButton)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+    GroupLayout layout = new GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup().addGap(30, 30, 30)
+            .addComponent(homeButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout
+                .createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(firstNameLabel, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(idLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                    .addComponent(lastNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                    .addComponent(positionLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addGroup(GroupLayout.Alignment.TRAILING,
+                        layout.createSequentialGroup()
+                            .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 100,
+                                GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30).addComponent(cancelButton,
+                                GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(firstNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(idLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lastNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(positionLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(noteLabel, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                    .addComponent(idField, GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                                    .addComponent(firstNameField)
-                                    .addComponent(lastNameField)
-                                    .addComponent(positionField)))))
-                    .addComponent(tableLabel))
-                .addGap(140, 140, 140))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(tableLabel, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(idLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(firstNameLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(firstNameField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
-                                .addGap(77, 77, 77)
-                                .addComponent(lastNameField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lastNameLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77)
-                        .addComponent(positionField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(positionLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(noteLabel)
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(positionField, GroupLayout.DEFAULT_SIZE, 542,
+                                Short.MAX_VALUE)
+                            .addComponent(lastNameField).addComponent(firstNameField)
+                            .addComponent(idField)))))
+                .addComponent(tableLabel))
+            .addGap(140, 140, 140)));
+    layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup().addContainerGap()
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(tableLabel, GroupLayout.PREFERRED_SIZE, 37,
+                    GroupLayout.PREFERRED_SIZE)
+                .addComponent(homeButton))
+            .addGap(49, 49, 49)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                .addComponent(idLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+                .addComponent(idField, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addGap(77, 77, 77)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(firstNameLabel, GroupLayout.PREFERRED_SIZE, 53,
+                                    GroupLayout.PREFERRED_SIZE)
+                                .addComponent(firstNameField, GroupLayout.PREFERRED_SIZE, 53,
+                                    GroupLayout.PREFERRED_SIZE))
+                            .addGap(77, 77, 77).addComponent(lastNameField,
+                                GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lastNameLabel, GroupLayout.PREFERRED_SIZE, 53,
+                            GroupLayout.PREFERRED_SIZE))
+                    .addGap(77, 77, 77).addComponent(positionField, GroupLayout.PREFERRED_SIZE, 53,
+                        GroupLayout.PREFERRED_SIZE))
+                .addGroup(GroupLayout.Alignment.TRAILING,
+                    layout.createSequentialGroup().addGap(40, 40, 40).addComponent(positionLabel,
+                        GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)))
+            .addGap(54, 54, 54)
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 49,
+                    GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(58, Short.MAX_VALUE)));
 
-        pack();
-    }
+    pack();
+  }
 }

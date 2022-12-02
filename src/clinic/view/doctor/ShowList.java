@@ -8,81 +8,114 @@ import java.sql.SQLException;
 import clinic.controller.DoctorController;
 
 public class ShowList extends JFrame {
-  private JButton backButton;
-  private JButton okButton;
+  private DefaultTableModel tableModel;
+  private JTable dataTable;
 
   private JLabel tableLabel;
 
   private JScrollBar scrollBar;
-  private JScrollPane scrollPanel;
+  private JScrollPane scrollPane;
 
+  private JButton okButton;
+  private JButton homeButton;
+
+  private String[] col = {"ID", "First name", "Last name", "Position"};
   private DoctorController doctorCtrl = new DoctorController();
 
-  public ShowList() throws SQLException {
+  private Font labelFont;
+  private Font buttonFont;
+  private Font tableFont;
+
+  public ShowList() {
     initComponents();
   }
 
-  private void initComponents() throws SQLException {
+  private void refreshTable() {
+    try {
+      java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getList();
+      tableModel.setRowCount(0);
 
-    backButton = new JButton();
-    okButton = new JButton();
+      for (int i = 0; i < objectList.size(); i++) {
+        String id = objectList.get(i).get(0);
+        String firstName = objectList.get(i).get(1);
+        String lastName = objectList.get(i).get(2);
+        String position = objectList.get(i).get(3);
+        Object[] data = {id, firstName, lastName, position};
+        tableModel.addRow(data);
+      }
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+  }
+
+  private void initComponents() {
+    tableModel = new DefaultTableModel(col, 0);
+    dataTable = new JTable(tableModel);
 
     tableLabel = new JLabel();
 
     scrollBar = new JScrollBar();
-    scrollPanel = new JScrollPane();
+    scrollPane = new JScrollPane();
 
-    String[] col = {"ID", "First name", "Last name", "Position"};
+    okButton = new JButton();
+    homeButton = new JButton();
+
+    labelFont = new Font("Titillium Web", 0, 28);
+    buttonFont = new Font("Titillium Web", 0, 16);
+    tableFont = new Font("Titillium Web", 0, 16);
+
+    try {
+      java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getList();
+
+      for (int i = 0; i < objectList.size(); i++) {
+        String id = objectList.get(i).get(0);
+        String firstName = objectList.get(i).get(1);
+        String lastName = objectList.get(i).get(2);
+        String position = objectList.get(i).get(3);
+        Object[] data = {id, firstName, lastName, position};
+        tableModel.addRow(data);
+      }
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
 
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-    backButton.setBackground(new Color(243, 243, 243));
-    backButton.setIcon(new ImageIcon(getClass().getResource("../icon/back-button.png")));
-    backButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-        System.exit(0);
-      }
-    });
-
-    DefaultTableModel tableModel = new DefaultTableModel(col, 0);
-    JTable dataTable = new JTable(tableModel);
-
-    java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getList();
-
-    for (int i = 0; i < objectList.size(); i++) {
-      String id = objectList.get(i).get(0);
-      String firstName = objectList.get(i).get(1);
-      String lastName = objectList.get(i).get(2);
-      String position = objectList.get(i).get(3);
-      Object[] data = {id, firstName, lastName, position};
-      tableModel.addRow(data);
-    }
-
+    dataTable.setFont(tableFont);
     dataTable.setPreferredSize(new Dimension(1050, 550));
-    scrollPanel.setViewportView(dataTable);
+    dataTable.setRowHeight(24);
 
-    tableLabel.setFont(new Font("Segoe UI", 0, 28));
+    scrollPane.setViewportView(dataTable);
+
+    tableLabel.setFont(labelFont);
     tableLabel.setText("Doctor table ");
 
+    okButton.setFont(buttonFont);
     okButton.setText("OK");
     okButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
-        java.util.ArrayList<java.util.ArrayList<String>> newObjectList;
+        refreshTable();
+      }
+    });
 
-        try {
-          tableModel.setRowCount(0);
-          newObjectList = doctorCtrl.getList();
+    homeButton.setBackground(new Color(243, 243, 243));
+    homeButton.setIcon(new ImageIcon(getClass().getResource("../icon/home.png")));
+    homeButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+        DefaultTableModel model = (DefaultTableModel) dataTable.getModel();
+        int selectedRow = dataTable.getSelectedRow();
 
-          for (int i = 0; i < newObjectList.size(); i++) {
-            String id = newObjectList.get(i).get(0);
-            String firstName = newObjectList.get(i).get(1);
-            String lastName = newObjectList.get(i).get(2);
-            String position = newObjectList.get(i).get(3);
-            Object[] data = {id, firstName, lastName, position};
-            tableModel.addRow(data);
+        if (selectedRow == -1) {
+          JOptionPane.showMessageDialog(null, "Please select a row!");
+        } else {
+          String id = model.getValueAt(selectedRow, 0).toString();
+          try {
+            doctorCtrl.deleteRecord(id);
+            refreshTable();
+            JOptionPane.showMessageDialog(null, "Record removed!");
+          } catch (SQLException e) {
+            System.out.println(e);
           }
-        } catch (SQLException e) {
-          System.out.println(e);
         }
       }
     });
@@ -90,8 +123,9 @@ public class ShowList extends JFrame {
     GroupLayout layout = new GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup().addGap(30, 30, 30).addComponent(backButton)
-            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+        .addGroup(layout.createSequentialGroup().addGap(30, 30, 30)
+            .addComponent(homeButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(
                     layout.createSequentialGroup().addGap(58, 58, 58).addComponent(tableLabel))
@@ -99,7 +133,7 @@ public class ShowList extends JFrame {
                     .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addComponent(okButton, GroupLayout.PREFERRED_SIZE, 100,
                             GroupLayout.PREFERRED_SIZE)
-                        .addComponent(scrollPanel, GroupLayout.PREFERRED_SIZE, 839,
+                        .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 839,
                             GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(scrollBar,
                         GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
@@ -107,18 +141,15 @@ public class ShowList extends JFrame {
             .addGap(34, 34, 34)));
     layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup().addContainerGap()
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                .addComponent(backButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                    Short.MAX_VALUE)
-                .addComponent(tableLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                    Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(homeButton).addComponent(tableLabel))
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup().addGap(172, 172, 172).addComponent(
                     scrollBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
                     GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createSequentialGroup()
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(scrollPanel, GroupLayout.PREFERRED_SIZE, 520,
+                    .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 520,
                         GroupLayout.PREFERRED_SIZE)
                     .addGap(40, 40, 40).addComponent(okButton, GroupLayout.PREFERRED_SIZE, 50,
                         GroupLayout.PREFERRED_SIZE)))
