@@ -15,7 +15,7 @@ public class NurseController {
     return data;
   }
 
-  public ArrayList<ArrayList<String>> getList() throws SQLException {
+  public ArrayList<ArrayList<String>> getRecord() throws SQLException {
     ArrayList<ArrayList<String>> data = nurseDao.getAll();
     return data;
   }

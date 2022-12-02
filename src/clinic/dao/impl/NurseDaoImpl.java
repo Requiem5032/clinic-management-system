@@ -12,7 +12,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
   @Override
   public Nurse get(String id) throws SQLException {
     con = DBConnection.createDBConnection();
-    Nurse nur = null;
+    Nurse object = null;
     String query =
         "SELECT employee.id, employee.first_name, employee.last_name, nurse.position FROM nurse INNER JOIN employee ON employee.id = nurse.id WHERE employee.id = ?";
 
@@ -22,15 +22,15 @@ public class NurseDaoImpl implements Dao<Nurse> {
     ResultSet rs = ps.executeQuery();
 
     if (rs.next()) {
-      String nurseID = rs.getString("id");
+      String nurseId = rs.getString("id");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      nur = new Nurse(nurseID, firstName, lastName, position);
+      object = new Nurse(nurseId, firstName, lastName, position);
     }
 
-    return nur;
+    return object;
   }
 
   @Override

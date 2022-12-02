@@ -22,15 +22,15 @@ public class PatientDaoImpl implements Dao<Patient> {
     ResultSet rs = ps.executeQuery();
 
     if (rs.next()) {
-      String PID = rs.getString("pid");
-      String NID = rs.getString("nid");
+      String pid = rs.getString("pid");
+      String nid = rs.getString("nid");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
       int age = rs.getInt("age");
       boolean gender = rs.getBoolean("gender");
       String addr = rs.getString("address");
 
-      patient = new Patient(PID, NID, firstName, lastName, age, gender, addr);
+      patient = new Patient(pid, nid, firstName, lastName, age, gender, addr);
     }
 
     return patient;
@@ -73,8 +73,8 @@ public class PatientDaoImpl implements Dao<Patient> {
     ArrayList<ArrayList<String>> objectList = new ArrayList<ArrayList<String>>(row);
 
     while (rs.next()) {
-      String PID = rs.getString("pid");
-      String NID = rs.getString("nid");
+      String pid = rs.getString("pid");
+      String nid = rs.getString("nid");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
       int tempAge = rs.getInt("age");
@@ -89,8 +89,8 @@ public class PatientDaoImpl implements Dao<Patient> {
       String addr = rs.getString("address");
 
       ArrayList<String> temp = new ArrayList<String>(col);
-      temp.add(PID);
-      temp.add(NID);
+      temp.add(pid);
+      temp.add(nid);
       temp.add(firstName);
       temp.add(lastName);
       temp.add(age);

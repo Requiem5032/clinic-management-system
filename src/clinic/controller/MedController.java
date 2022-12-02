@@ -15,7 +15,7 @@ public class MedController {
     return data;
   }
 
-  public ArrayList<ArrayList<String>> getList() throws SQLException {
+  public ArrayList<ArrayList<String>> getRecord() throws SQLException {
     ArrayList<ArrayList<String>> data = medDao.getAll();
     return data;
   }

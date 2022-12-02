@@ -12,7 +12,7 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   @Override
   public Doctor get(String id) throws SQLException {
     con = DBConnection.createDBConnection();
-    Doctor doc = null;
+    Doctor model = null;
     String query =
         "SELECT employee.id, employee.first_name, employee.last_name, doctor.position FROM doctor INNER JOIN employee ON employee.id = doctor.id WHERE employee.id = ?";
 
@@ -22,15 +22,15 @@ public class DoctorDaoImpl implements Dao<Doctor> {
     ResultSet rs = ps.executeQuery();
 
     if (rs.next()) {
-      String doctorID = rs.getString("id");
+      String doctorId = rs.getString("id");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      doc = new Doctor(doctorID, firstName, lastName, position);
+      model = new Doctor(doctorId, firstName, lastName, position);
     }
 
-    return doc;
+    return model;
   }
 
   @Override

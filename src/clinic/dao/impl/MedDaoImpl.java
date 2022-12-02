@@ -12,7 +12,7 @@ public class MedDaoImpl implements Dao<Med> {
   @Override
   public Med get(String id) throws SQLException {
     con = DBConnection.createDBConnection();
-    Med med = null;
+    Med model = null;
 
     String query = "SELECT * FROM medicine WHERE id = ?";
 
@@ -22,15 +22,15 @@ public class MedDaoImpl implements Dao<Med> {
     ResultSet rs = ps.executeQuery();
 
     if (rs.next()) {
-      String medID = rs.getString("id");
+      String medId = rs.getString("id");
       String name = rs.getString("name");
       double price = rs.getDouble("price");
       int quantity = rs.getInt("quantity");
 
-      med = new Med(medID, name, price, quantity);
+      model = new Med(medId, name, price, quantity);
     }
 
-    return med;
+    return model;
   }
 
   @Override
@@ -63,7 +63,7 @@ public class MedDaoImpl implements Dao<Med> {
     ArrayList<ArrayList<String>> objectList = new ArrayList<ArrayList<String>>(row);
 
     while(rs.next()) {
-      String medID = rs.getString("id");
+      String medId = rs.getString("id");
       String name = rs.getString("name");
       double tempPrice = rs.getDouble("price");
       int tempQuantity = rs.getInt("quantity");
@@ -71,7 +71,7 @@ public class MedDaoImpl implements Dao<Med> {
       String quantity = Integer.toString(tempQuantity);
 
       ArrayList<String> temp = new ArrayList<String>(col);
-      temp.add(medID);
+      temp.add(medId);
       temp.add(name);
       temp.add(price);
       temp.add(quantity);

@@ -32,7 +32,7 @@ public class ShowList extends JFrame {
 
   private void refreshTable() {
     try {
-      java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getList();
+      java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getRecord();
       tableModel.setRowCount(0);
 
       for (int i = 0; i < objectList.size(); i++) {
@@ -65,7 +65,7 @@ public class ShowList extends JFrame {
     tableFont = new Font("Titillium Web", 0, 16);
 
     try {
-      java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getList();
+      java.util.ArrayList<java.util.ArrayList<String>> objectList = doctorCtrl.getRecord();
 
       for (int i = 0; i < objectList.size(); i++) {
         String id = objectList.get(i).get(0);
