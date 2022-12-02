@@ -1,11 +1,11 @@
-import clinic.controller.*;
+// import clinic.controller.*;
 
 public class Demo {
   public static void main(String[] args) throws Exception {
-    DoctorController doctorCtrl = new DoctorController();
-    NurseController nurseCtrl = new NurseController();
-    MedController medCtrl = new MedController();
-    PatientController patientCtrl = new PatientController();
+    // DoctorController doctorCtrl = new DoctorController();
+    // NurseController nurseCtrl = new NurseController();
+    // MedController medCtrl = new MedController();
+    // PatientController patientCtrl = new PatientController();
 
     // clinic.view.doctor.Add addDoc = new clinic.view.doctor.Add();
     // addDoc.setTitle("Add doctor");

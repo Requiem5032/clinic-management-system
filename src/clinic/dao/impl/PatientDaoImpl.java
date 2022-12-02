@@ -59,7 +59,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   }
 
   @Override
-  public ArrayList<ArrayList<String>> getAll() throws SQLException {
+  public ArrayList<ArrayList<String>> getArrayList() throws SQLException {
     con = DBConnection.createDBConnection();
     String query = "SELECT * FROM patient ORDER BY pid ASC";
 

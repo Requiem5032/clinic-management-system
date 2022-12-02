@@ -46,7 +46,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
   }
 
   @Override
-  public ArrayList<ArrayList<String>> getAll() throws SQLException {
+  public ArrayList<ArrayList<String>> getArrayList() throws SQLException {
     con = DBConnection.createDBConnection();
     String query =
         "SELECT employee.id, employee.first_name, employee.last_name, nurse.position FROM nurse INNER JOIN employee ON employee.id = nurse.id ORDER BY employee.id ASC";

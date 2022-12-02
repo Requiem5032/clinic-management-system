@@ -8,7 +8,7 @@ public interface Dao<T> {
 
   ArrayList<String> getArrayList(String id) throws SQLException;
 
-  ArrayList<ArrayList<String>> getAll() throws SQLException;
+  ArrayList<ArrayList<String>> getArrayList() throws SQLException;
 
   int insert(T object) throws SQLException;
 

@@ -86,6 +86,7 @@ public class Add extends JFrame {
           String firstName = firstNameField.getText();
           String lastName = lastNameField.getText();
           String position = positionField.getText();
+          
           try {
             doctorCtrl.insertRecord(id, firstName, lastName, position);
             JOptionPane.showMessageDialog(null, "Add data successfully!");

@@ -16,7 +16,7 @@ public class DoctorController {
   }
 
   public ArrayList<ArrayList<String>> getRecord() throws SQLException {
-    ArrayList<ArrayList<String>> data = doctorDao.getAll();
+    ArrayList<ArrayList<String>> data = doctorDao.getArrayList();
     return data;
   }
 

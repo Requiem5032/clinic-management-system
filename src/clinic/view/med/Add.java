@@ -61,13 +61,13 @@ public class Add extends JFrame {
     idLabel.setText("Med ID");
 
     nameLabel.setFont(labelFont);
-    nameLabel.setText("First Name");
+    nameLabel.setText("Name");
 
     priceLabel.setFont(labelFont);
-    priceLabel.setText("Last Name");
+    priceLabel.setText("Price");
 
     quantityLabel.setFont(labelFont);
-    quantityLabel.setText("Position");
+    quantityLabel.setText("Quantity");
 
     idField.setFont(fieldFont);
     nameField.setFont(fieldFont);
@@ -82,17 +82,24 @@ public class Add extends JFrame {
             || priceField.getText().equals("") || quantityField.getText().equals("")) {
           JOptionPane.showMessageDialog(null, "Please enter all data!");
         } else {
-          String id = idField.getText();
-          String name = nameField.getText();
-          double price = Double.parseDouble(priceField.getText());
-          int quantity = Integer.parseInt(quantityField.getText());
           try {
-            medCtrl.insertRecord(id, name, price, quantity);
-            JOptionPane.showMessageDialog(null, "Add data successfully!");
-          } catch (SQLException e) {
+            String id = idField.getText();
+            String name = nameField.getText();
+            double price = Double.parseDouble(priceField.getText());
+            int quantity = Integer.parseInt(quantityField.getText());
+
+            try {
+              medCtrl.insertRecord(id, name, price, quantity);
+              JOptionPane.showMessageDialog(null, "Add data successfully!");
+            } catch (SQLException e) {
+              System.out.println(e);
+              JOptionPane.showMessageDialog(null, "Duplicated entry!");
+            }
+          } catch (NumberFormatException e) {
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "Duplicated entry!");
+            JOptionPane.showMessageDialog(null, "Wrong data type!");
           }
+
         }
       }
     });
