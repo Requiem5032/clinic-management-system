@@ -48,11 +48,11 @@ public class Patient {
     return addr;
   }
 
-  public void setpid(String pid) {
+  public void setPid(String pid) {
     this.pid = pid;
   }
 
-  public void setnid(String nid) {
+  public void setNid(String nid) {
     this.nid = nid;
   }
 

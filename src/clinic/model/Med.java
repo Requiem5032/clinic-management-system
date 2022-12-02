@@ -33,7 +33,7 @@ public class Med {
     this.name = name;
   }
 
-  public void setid(String id) {
+  public void setId(String id) {
     this.id = id;
   }
 
