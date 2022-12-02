@@ -37,7 +37,7 @@ public class MedDaoImpl implements Dao<Med> {
   public ArrayList<String> getArrayList(String id) throws SQLException{
     Med model = get(id);
     ArrayList<String> data = new ArrayList<String>();
-    data.add(model.getID());
+    data.add(model.getId());
     data.add(model.getName());
     double tempPrice = model.getPrice();
     data.add(Double.toString(tempPrice));
@@ -87,7 +87,7 @@ public class MedDaoImpl implements Dao<Med> {
     String query = "INSERT INTO medicine (id, name, price, quantity) VALUES (?, ?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, object.getID());
+    ps.setString(1, object.getId());
     ps.setString(2, object.getName());
     ps.setDouble(3, object.getPrice());
     ps.setInt(4, object.getQuantity());
@@ -109,7 +109,7 @@ public class MedDaoImpl implements Dao<Med> {
     ps.setString(1, object.getName());
     ps.setDouble(2, object.getPrice());
     ps.setInt(3, object.getQuantity());
-    ps.setString(4, object.getID());
+    ps.setString(4, object.getId());
 
     int result = ps.executeUpdate();
 
@@ -127,7 +127,7 @@ public class MedDaoImpl implements Dao<Med> {
     
     PreparedStatement ps = con.prepareStatement(query);
 
-    ps.setString(1, object.getID());
+    ps.setString(1, object.getId());
 
     int result = ps.executeUpdate();
 

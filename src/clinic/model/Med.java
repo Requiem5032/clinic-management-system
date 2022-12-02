@@ -2,12 +2,12 @@ package clinic.model;
 
 public class Med {
   private String name;
-  private String ID;
+  private String id;
   private double price;
   private int quantity;
 
-  public Med(String ID, String name, double price, int quantity) {
-    this.ID = ID;
+  public Med(String id, String name, double price, int quantity) {
+    this.id = id;
     this.name = name;
     this.price = price;
     this.quantity = quantity;
@@ -17,8 +17,8 @@ public class Med {
     return name;
   }
 
-  public String getID() {
-    return ID;
+  public String getId() {
+    return id;
   }
 
   public double getPrice() {
@@ -33,8 +33,8 @@ public class Med {
     this.name = name;
   }
 
-  public void setID(String ID) {
-    this.ID = ID;
+  public void setid(String id) {
+    this.id = id;
   }
 
   public void setPrice(double price) {

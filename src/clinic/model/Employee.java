@@ -11,7 +11,7 @@ public class Employee {
     this.lastName = lastName;
   }
 
-  public String getID() {
+  public String getId() {
     return id;
   }
 

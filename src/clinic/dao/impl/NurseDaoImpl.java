@@ -37,7 +37,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
   public ArrayList<String> getArrayList(String id) throws SQLException{
     Nurse model = get(id);
     ArrayList<String> data = new ArrayList<String>();
-    data.add(model.getID());
+    data.add(model.getId());
     data.add(model.getFirstName());
     data.add(model.getLastName());
     data.add(model.getPosition());
@@ -85,10 +85,10 @@ public class NurseDaoImpl implements Dao<Nurse> {
         "INSERT INTO employee (id, first_name, last_name) VALUE (?, ?, ?); INSERT INTO nurse (id, position) VALUES (?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, object.getID());
+    ps.setString(1, object.getId());
     ps.setString(2, object.getFirstName());
     ps.setString(3, object.getLastName());
-    ps.setString(4, object.getID());
+    ps.setString(4, object.getId());
     ps.setString(5, object.getPosition());
 
     int result = ps.executeUpdate();
@@ -107,10 +107,10 @@ public class NurseDaoImpl implements Dao<Nurse> {
     PreparedStatement ps = con.prepareStatement(query);
 
     ps.setString(1, object.getPosition());
-    ps.setString(2, object.getID());
+    ps.setString(2, object.getId());
     ps.setString(3, object.getFirstName());
     ps.setString(4, object.getLastName());
-    ps.setString(5, object.getID());
+    ps.setString(5, object.getId());
 
     int result = ps.executeUpdate();
 
@@ -128,7 +128,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
         "DELETE FROM employee, nurse USING nurse INNER JOIN employee ON employee.id = nurse.id WHERE nurse.id = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, object.getID());
+    ps.setString(1, object.getId());
 
     int result = ps.executeUpdate();
 
