@@ -12,7 +12,8 @@ public class NurseDaoImpl implements Dao<Nurse> {
   @Override
   public Nurse get(String id) throws SQLException {
     con = DBConnection.createDBConnection();
-    Nurse object = null;
+    Nurse model = null;
+
     String query =
         "SELECT employee.id, employee.first_name, employee.last_name, nurse.position FROM nurse INNER JOIN employee ON employee.id = nurse.id WHERE employee.id = ?";
 
@@ -27,16 +28,44 @@ public class NurseDaoImpl implements Dao<Nurse> {
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      object = new Nurse(nurseId, firstName, lastName, position);
+      model = new Nurse(nurseId, firstName, lastName, position);
     }
 
-    return object;
+    return model;
   }
 
   @Override
-  public ArrayList<String> getArrayList(String id) throws SQLException{
+  public List<Nurse> get() throws SQLException {
+    con = DBConnection.createDBConnection();
+    Nurse model = null;
+
+    String query =
+        "SELECT employee.id, employee.first_name, employee.last_name, nurse.position FROM nurse INNER JOIN employee ON employee.id = nurse.id ORDER BY employee.id ASC";
+
+    Statement stmt = con.createStatement();
+    ResultSet rs = stmt.executeQuery(query);
+
+    int row = rs.getRow();
+
+    List<Nurse> objectList = new ArrayList<Nurse>(row);
+
+    while (rs.next()) {
+      String id = rs.getString("id");
+      String firstName = rs.getString("first_name");
+      String lastName = rs.getString("last_name");
+      String position = rs.getString("position");
+
+      model = new Nurse(id, firstName, lastName, position);
+      objectList.add(model);
+    }
+
+    return objectList;
+  }
+
+  @Override
+  public List<String> getList(String id) throws SQLException {
     Nurse model = get(id);
-    ArrayList<String> data = new ArrayList<String>();
+    List<String> data = new ArrayList<String>();
     data.add(model.getId());
     data.add(model.getFirstName());
     data.add(model.getLastName());
@@ -46,7 +75,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
   }
 
   @Override
-  public ArrayList<ArrayList<String>> getArrayList() throws SQLException {
+  public List<List<String>> getList() throws SQLException {
     con = DBConnection.createDBConnection();
     String query =
         "SELECT employee.id, employee.first_name, employee.last_name, nurse.position FROM nurse INNER JOIN employee ON employee.id = nurse.id ORDER BY employee.id ASC";
@@ -58,7 +87,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
     int row = rs.getRow();
     int col = rsmd.getColumnCount();
 
-    ArrayList<ArrayList<String>> objectList = new ArrayList<ArrayList<String>>(row);
+    List<List<String>> objectList = new ArrayList<List<String>>(row);
 
     while (rs.next()) {
       String id = rs.getString("id");
@@ -66,7 +95,7 @@ public class NurseDaoImpl implements Dao<Nurse> {
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
-      ArrayList<String> temp = new ArrayList<String>(col);
+      List<String> temp = new ArrayList<String>(col);
       temp.add(id);
       temp.add(firstName);
       temp.add(lastName);
@@ -102,7 +131,8 @@ public class NurseDaoImpl implements Dao<Nurse> {
   @Override
   public int update(Nurse object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "UPDATE nurse SET position = ? WHERE id = ?; UPDATE employee SET first_name = ?, last_name = ? WHERE id = ?";
+    String query =
+        "UPDATE nurse SET position = ? WHERE id = ?; UPDATE employee SET first_name = ?, last_name = ? WHERE id = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
 

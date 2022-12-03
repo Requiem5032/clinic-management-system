@@ -12,7 +12,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   @Override
   public Patient get(String id) throws SQLException {
     con = DBConnection.createDBConnection();
-    Patient patient = null;
+    Patient model = null;
 
     String query = "SELECT * FROM patient WHERE pid = ?";
 
@@ -30,16 +30,47 @@ public class PatientDaoImpl implements Dao<Patient> {
       boolean gender = rs.getBoolean("gender");
       String addr = rs.getString("address");
 
-      patient = new Patient(pid, nid, firstName, lastName, age, gender, addr);
+      model = new Patient(pid, nid, firstName, lastName, age, gender, addr);
     }
 
-    return patient;
+    return model;
   }
 
   @Override
-  public ArrayList<String> getArrayList(String id) throws SQLException{
+  public List<Patient> get() throws SQLException {
+    con = DBConnection.createDBConnection();
+    Patient model = null;
+
+    String query = "SELECT * FROM patient ORDER BY pid ASC";
+
+    Statement stmt = con.createStatement();
+    ResultSet rs = stmt.executeQuery(query);
+
+    int row = rs.getRow();
+
+    List<Patient> objectList = new ArrayList<Patient>(row);
+
+    while (rs.next()) {
+      String pid = rs.getString("pid");
+      String nid = rs.getString("nid");
+      String firstName = rs.getString("first_name");
+      String lastName = rs.getString("last_name");
+      int age = rs.getInt("age");
+      boolean gender = rs.getBoolean("gender");
+      String addr = rs.getString("address");
+
+      model = new Patient(pid, nid, firstName, lastName, age, gender, addr);
+      objectList.add(model);
+    }
+
+    return objectList;
+  }
+
+  @Override
+  public List<String> getList(String id) throws SQLException {
     Patient model = get(id);
-    ArrayList<String> data = new ArrayList<String>();
+    List<String> data = new ArrayList<String>();
+
     data.add(model.getPid());
     data.add(model.getNid());
     data.add(model.getFirstName());
@@ -59,7 +90,7 @@ public class PatientDaoImpl implements Dao<Patient> {
   }
 
   @Override
-  public ArrayList<ArrayList<String>> getArrayList() throws SQLException {
+  public List<List<String>> getList() throws SQLException {
     con = DBConnection.createDBConnection();
     String query = "SELECT * FROM patient ORDER BY pid ASC";
 
@@ -70,7 +101,7 @@ public class PatientDaoImpl implements Dao<Patient> {
     int row = rs.getRow();
     int col = rsmd.getColumnCount();
 
-    ArrayList<ArrayList<String>> objectList = new ArrayList<ArrayList<String>>(row);
+    List<List<String>> objectList = new ArrayList<List<String>>(row);
 
     while (rs.next()) {
       String pid = rs.getString("pid");
@@ -88,7 +119,7 @@ public class PatientDaoImpl implements Dao<Patient> {
       }
       String addr = rs.getString("address");
 
-      ArrayList<String> temp = new ArrayList<String>(col);
+      List<String> temp = new ArrayList<String>(col);
       temp.add(pid);
       temp.add(nid);
       temp.add(firstName);

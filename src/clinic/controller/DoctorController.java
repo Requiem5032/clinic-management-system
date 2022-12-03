@@ -10,17 +10,18 @@ public class DoctorController {
   private Doctor model = null;
   private Dao<Doctor> doctorDao = new DoctorDaoImpl();
 
-  public ArrayList<String> getRecord(String id) throws SQLException {
-    ArrayList<String> data = doctorDao.getArrayList(id);
+  public List<String> getRecord(String id) throws SQLException {
+    List<String> data = doctorDao.getList(id);
     return data;
   }
 
-  public ArrayList<ArrayList<String>> getRecord() throws SQLException {
-    ArrayList<ArrayList<String>> data = doctorDao.getArrayList();
+  public List<List<String>> getRecord() throws SQLException {
+    List<List<String>> data = doctorDao.getList();
     return data;
   }
 
-  public void insertRecord(String id, String firstName, String lastName, String position) throws SQLException{
+  public void insertRecord(String id, String firstName, String lastName, String position)
+      throws SQLException {
     model = new Doctor(id, firstName, lastName, position);
 
     int result = doctorDao.insert(model);
@@ -28,7 +29,8 @@ public class DoctorController {
     System.out.println(result);
   }
 
-  public void updateRecord(String id, String firstName, String lastName, String position) throws SQLException{
+  public void updateRecord(String id, String firstName, String lastName, String position)
+      throws SQLException {
     model = new Doctor(id, firstName, lastName, position);
 
     int result = doctorDao.update(model);
@@ -36,7 +38,7 @@ public class DoctorController {
     System.out.println(result);
   }
 
-  public void deleteRecord(String id) throws SQLException{
+  public void deleteRecord(String id) throws SQLException {
     model = doctorDao.get(id);
 
     int result = doctorDao.delete(model);

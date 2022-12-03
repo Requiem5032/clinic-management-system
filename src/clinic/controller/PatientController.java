@@ -10,13 +10,13 @@ public class PatientController {
   private Patient model = null;
   private Dao<Patient> patientDao = new PatientDaoImpl();
 
-  public ArrayList<String> getRecord(String id) throws SQLException {
-    ArrayList<String> data = patientDao.getArrayList(id);
+  public List<String> getRecord(String id) throws SQLException {
+    List<String> data = patientDao.getList(id);
     return data;
   }
 
-  public ArrayList<ArrayList<String>> getRecord() throws SQLException {
-    ArrayList<ArrayList<String>> data = patientDao.getArrayList();
+  public List<List<String>> getRecord() throws SQLException {
+    List<List<String>> data = patientDao.getList();
     return data;
   }
 

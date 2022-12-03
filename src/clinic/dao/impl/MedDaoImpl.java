@@ -34,9 +34,37 @@ public class MedDaoImpl implements Dao<Med> {
   }
 
   @Override
-  public ArrayList<String> getArrayList(String id) throws SQLException{
+  public List<Med> get() throws SQLException {
+    con = DBConnection.createDBConnection();
+    Med model = null;
+
+    String query = "SELECT * FROM medicine ORDER BY id ASC";
+
+    Statement stmt = con.createStatement();
+
+    ResultSet rs = stmt.executeQuery(query);
+
+    int row = rs.getRow();
+
+    List<Med> objectList = new ArrayList<Med>(row);
+
+    while (rs.next()) {
+      String medId = rs.getString("id");
+      String name = rs.getString("name");
+      double price = rs.getDouble("price");
+      int quantity = rs.getInt("quantity");
+
+      model = new Med(medId, name, price, quantity);
+      objectList.add(model);
+    }
+
+    return objectList;
+  }
+
+  @Override
+  public List<String> getList(String id) throws SQLException {
     Med model = get(id);
-    ArrayList<String> data = new ArrayList<String>();
+    List<String> data = new ArrayList<String>();
     data.add(model.getId());
     data.add(model.getName());
     double tempPrice = model.getPrice();
@@ -48,10 +76,10 @@ public class MedDaoImpl implements Dao<Med> {
   }
 
   @Override
-  public ArrayList<ArrayList<String>> getArrayList() throws SQLException {
+  public List<List<String>> getList() throws SQLException {
     con = DBConnection.createDBConnection();
     String query = "SELECT * FROM medicine ORDER BY id ASC";
-    
+
     Statement stmt = con.createStatement();
 
     ResultSet rs = stmt.executeQuery(query);
@@ -60,9 +88,9 @@ public class MedDaoImpl implements Dao<Med> {
     int row = rs.getRow();
     int col = rsmd.getColumnCount();
 
-    ArrayList<ArrayList<String>> objectList = new ArrayList<ArrayList<String>>(row);
+    List<List<String>> objectList = new ArrayList<List<String>>(row);
 
-    while(rs.next()) {
+    while (rs.next()) {
       String medId = rs.getString("id");
       String name = rs.getString("name");
       double tempPrice = rs.getDouble("price");
@@ -70,7 +98,7 @@ public class MedDaoImpl implements Dao<Med> {
       String price = Double.toString(tempPrice);
       String quantity = Integer.toString(tempQuantity);
 
-      ArrayList<String> temp = new ArrayList<String>(col);
+      List<String> temp = new ArrayList<String>(col);
       temp.add(medId);
       temp.add(name);
       temp.add(price);
@@ -124,7 +152,7 @@ public class MedDaoImpl implements Dao<Med> {
     con = DBConnection.createDBConnection();
 
     String query = "DELETE FROM medicine WHERE id = ?";
-    
+
     PreparedStatement ps = con.prepareStatement(query);
 
     ps.setString(1, object.getId());
