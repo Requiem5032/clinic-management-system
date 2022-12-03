@@ -5,7 +5,5 @@
   - 17273 Truong Hoang Nam
   - 17306 Tran Minh Ngoc
   - 18810 Tran Kim Hoan
-
----
-
+  
 ***Lecturer:*** Dr. Tran Hong Ngoc 
