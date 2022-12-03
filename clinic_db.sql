@@ -42,27 +42,27 @@ CREATE TABLE patient (
 
 SET GLOBAL local_infile = 1;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/employee_info.csv' INTO TABLE employee
+LOAD DATA LOCAL INFILE 'D:/Workspaces/Java/java-project/employee_info.csv' INTO TABLE employee
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/doctor_info.csv' INTO TABLE doctor
+LOAD DATA LOCAL INFILE 'D:/Workspaces/Java/java-project/doctor_info.csv' INTO TABLE doctor
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/nurse_info.csv' INTO TABLE nurse
+LOAD DATA LOCAL INFILE 'D:/Workspaces/Java/java-project/nurse_info.csv' INTO TABLE nurse
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/medicine_info.csv' INTO TABLE medicine
+LOAD DATA LOCAL INFILE 'D:/Workspaces/Java/java-project/medicine_info.csv' INTO TABLE medicine
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/patient_info.csv' INTO TABLE patient
+LOAD DATA LOCAL INFILE 'D:/Workspaces/Java/java-project/patient_info.csv' INTO TABLE patient
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
