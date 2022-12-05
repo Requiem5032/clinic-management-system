@@ -92,7 +92,7 @@ public class Add extends JFrame {
             JOptionPane.showMessageDialog(null, "Add data successfully!");
           } catch (SQLException e) {
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "Duplicated entry!");
+            JOptionPane.showMessageDialog(null, "Something went wrong!");
           }
         }
       }
