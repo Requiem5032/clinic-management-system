@@ -3,40 +3,40 @@ CREATE DATABASE clinic;
 USE clinic;
 
 CREATE TABLE employee (
-  id VARCHAR(10) NOT NULL,
-  first_name VARCHAR(45) NULL,
-  last_name VARCHAR(45) NULL,
+  id VARCHAR(6) NOT NULL,
+  first_name VARCHAR(50) NULL,
+  last_name VARCHAR(50) NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE doctor (
-  id VARCHAR(10) NOT NULL,
-  position VARCHAR(45) NULL,
+  id VARCHAR(6) NOT NULL,
+  position VARCHAR(50) NULL,
   FOREIGN KEY (id) REFERENCES employee(id)
 );
 
 CREATE TABLE nurse (
-  id VARCHAR(10) NOT NULL,
-  position VARCHAR(45) NULL,
+  id VARCHAR(6) NOT NULL,
+  position VARCHAR(50) NULL,
   FOREIGN KEY (id) REFERENCES employee(id)
 );
   
 CREATE TABLE medicine (
-  id VARCHAR(10) NOT NULL,
-  name VARCHAR(45) NULL,
+  id VARCHAR(5) NOT NULL,
+  name VARCHAR(50) NULL,
   price DOUBLE NULL,
   quantity INT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE patient (
-  pid VARCHAR(10) NOT NULL,
+  pid VARCHAR(6) NOT NULL,
   nid VARCHAR(10) NULL,
-  first_name VARCHAR(45) NULL,
-  last_name VARCHAR(45) NULL,
+  first_name VARCHAR(50) NULL,
+  last_name VARCHAR(50) NULL,
   age INT NULL,
   gender TINYINT(1) NULL,
-  address VARCHAR(100) NULL,
+  address VARCHAR(250) NULL,
   PRIMARY KEY (pid)
 );
 

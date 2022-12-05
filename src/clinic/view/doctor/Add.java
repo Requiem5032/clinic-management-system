@@ -82,7 +82,7 @@ public class Add extends JFrame {
             || lastNameField.getText().equals("") || positionField.getText().equals("")) {
           JOptionPane.showMessageDialog(null, "Please enter all data!");
         } else {
-          String id = idField.getText();
+          String id =idField.getText();
           String firstName = firstNameField.getText();
           String lastName = lastNameField.getText();
           String position = positionField.getText();

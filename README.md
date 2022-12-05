@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  <img src="java.png" alt="Java Icon"/>
+  <img src="signature.jpg" alt="Signature"/>
 </p>
 
 ## ***Member list:***
