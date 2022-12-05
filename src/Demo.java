@@ -11,33 +11,25 @@ public class Demo {
     // addDoc.setTitle("Add doctor");
     // addDoc.setVisible(true);
 
-    // clinic.view.nurse.Add addNur = new clinic.view.nurse.Add();
-    // addNur.setVisible(true);
+    clinic.view.nurse.Add addNur = new clinic.view.nurse.Add();
+    addNur.setTitle("Add nurse");
+    addNur.setVisible(true);
 
-    clinic.view.med.Add addMed = new clinic.view.med.Add();
-    addMed.setTitle("Add medicine");
-    addMed.setVisible(true);
+    // clinic.view.med.Add addMed = new clinic.view.med.Add();
+    // addMed.setTitle("Add medicine");
+    // addMed.setVisible(true);
 
     // clinic.view.doctor.ShowList docList = new clinic.view.doctor.ShowList();
     // docList.setTitle("Show doctor list");
     // docList.setVisible(true);
 
-    // clinic.view.nurse.ShowList nurList = new clinic.view.nurse.ShowList();
-    // nurList.setVisible(true);
+    clinic.view.nurse.ShowList nurList = new clinic.view.nurse.ShowList();
+    nurList.setTitle("Show nurse list");
+    nurList.setVisible(true);
 
-    clinic.view.med.ShowList medList = new clinic.view.med.ShowList();
-    medList.setTitle("Show medicine list");
-    medList.setVisible(true);
-
-    // doctorCtrl.insertRecord("test", "test", "test", "test");
-    // nurseCtrl.insertRecord("null", "null", "null", "null");
-    // medCtrl.insertRecord("null", "null", 0, 0);
-    // patientCtrl.insertRecord("null", "null", "null", "null", 0, false, "null");
-
-    // doctorCtrl.deleteRecord("1");
-    // nurseCtrl.deleteRecord("2");
-    // medCtrl.deleteRecord("1");
-    // patientCtrl.deleteRecord("null");
+    // clinic.view.med.ShowList medList = new clinic.view.med.ShowList();
+    // medList.setTitle("Show medicine list");
+    // medList.setVisible(true);
 
     // doctorCtrl.updateRecord("test", "null", "null", "null");
     // nurseCtrl.updateRecord("null", "1", "1", "1");
