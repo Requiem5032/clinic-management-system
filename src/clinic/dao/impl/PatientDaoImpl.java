@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.*;
 
 public class PatientDaoImpl implements Dao<Patient> {
-  Connection con;
+  private Connection con;
 
   @Override
   public Patient get(String id) throws SQLException {
