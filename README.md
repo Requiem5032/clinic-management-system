@@ -1,8 +1,14 @@
-# **CLINIC MANAGEMENT SYSTEM**
+<h1>
+  <div align="center">
+    <b>CLINIC MANAGEMENT SYSTEM</b>
+  </div>
+</h1>
 
-![Java!](/java.png/ "Java")
+<p align="center">
+  <img src="java.png" alt="Java Icon"/>
+</p>
 
-***Member list:***
+## ***Member list:***
 
 - 17035 Nguyen Hoang Hai Nam
 - 17273 Truong Hoang Nam
