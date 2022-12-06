@@ -2,14 +2,30 @@
 
 public class Demo {
   public static void main(String[] args) throws Exception {
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+          .getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
+        }
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+
+    clinic.view.MainPage gui = new clinic.view.MainPage();
+    gui.setVisible(true);
+  }
+  
     // DoctorController doctorCtrl = new DoctorController();
     // NurseController nurseCtrl = new NurseController();
     // MedController medCtrl = new MedController();
     // PatientController patientCtrl = new PatientController();
 
-    clinic.view.doctor.Add addDoc = new clinic.view.doctor.Add();
-    addDoc.setTitle("Add doctor");
-    addDoc.setVisible(true);
+    // clinic.view.doctor.Add addDoc = new clinic.view.doctor.Add();
+    // addDoc.setTitle("Add doctor");
+    // addDoc.setVisible(true);
 
     // clinic.view.nurse.Add addNur = new clinic.view.nurse.Add();
     // addNur.setTitle("Add nurse");
@@ -19,9 +35,9 @@ public class Demo {
     // addMed.setTitle("Add medicine");
     // addMed.setVisible(true);
 
-    clinic.view.doctor.ShowList docList = new clinic.view.doctor.ShowList();
-    docList.setTitle("Show doctor list");
-    docList.setVisible(true);
+    // clinic.view.doctor.ShowList docList = new clinic.view.doctor.ShowList();
+    // docList.setTitle("Show doctor list");
+    // docList.setVisible(true);
 
     // clinic.view.nurse.ShowList nurList = new clinic.view.nurse.ShowList();
     // nurList.setTitle("Show nurse list");
@@ -40,5 +56,4 @@ public class Demo {
     // nurseCtrl.showList();
     // medCtrl.showList();
     // patientCtrl.showList();
-  }
 }
