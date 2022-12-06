@@ -23,7 +23,7 @@ public class Delete extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel1.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel1.setText("Doctor table ");
+    jLabel1.setText("Doctor table");
 
     deteleButton.setText("Delete");
     deteleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -40,7 +40,7 @@ public class Delete extends javax.swing.JFrame {
     });
 
     jLabel2.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel2.setText("*Search ID to delete");
+    jLabel2.setText("Search ID");
 
     jLabel3.setFont(new java.awt.Font("Titillium Web", 0, 20));
     jLabel3.setText("(6 digits)");
@@ -118,15 +118,15 @@ public class Delete extends javax.swing.JFrame {
 
   private void deteleButtonActionPerformed(java.awt.event.ActionEvent evt) {
     if (deleteTextField.getText().equals("")) {
-      JOptionPane.showMessageDialog(this, "Please enter data to delete !");
+      JOptionPane.showMessageDialog(this, "Please enter data to delete!");
     } else {
       try {
         String data = deleteTextField.getText();
         docCtrl.deleteRecord(data);
-        JOptionPane.showMessageDialog(this, "Delete data sucessefully !");
+        JOptionPane.showMessageDialog(this, "Delete data sucessefully!");
       } catch (Exception e) {
         System.out.println(e);
-        JOptionPane.showMessageDialog(this, "Something went wrong!");
+        JOptionPane.showMessageDialog(this, "Invalid ID!");
       }
     }
   }

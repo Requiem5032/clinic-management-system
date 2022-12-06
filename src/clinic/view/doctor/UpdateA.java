@@ -22,10 +22,10 @@ public class UpdateA extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel1.setFont(new java.awt.Font("Titilium Web", 0, 28));
-    jLabel1.setText("Doctor update");
+    jLabel1.setText("Doctor table");
 
     jLabel2.setFont(new java.awt.Font("Titilium Web", 0, 28));
-    jLabel2.setText("*Search ID to update");
+    jLabel2.setText("Search ID");
 
     jLabel3.setFont(new java.awt.Font("Titilium Web", 0, 20));
     jLabel3.setText("(6 digits)");

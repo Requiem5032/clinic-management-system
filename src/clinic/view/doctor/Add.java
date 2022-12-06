@@ -26,12 +26,12 @@ public class Add extends javax.swing.JFrame {
     jLabel7 = new javax.swing.JLabel();
 
     jLabel6.setFont(new java.awt.Font("Titillium Web", 0, 20));
-    jLabel6.setText("(7 digits)");
+    jLabel6.setText("(6 digits)");
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel1.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel1.setText("Doctor table ");
+    jLabel1.setText("Doctor table");
 
     jLabel2.setFont(new java.awt.Font("Titillium Web", 0, 28));
     jLabel2.setText("First Name");

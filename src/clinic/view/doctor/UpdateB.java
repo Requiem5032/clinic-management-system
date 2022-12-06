@@ -24,7 +24,7 @@ public class UpdateB extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel1.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel1.setText("Doctor update");
+    jLabel1.setText("Doctor table");
 
     jLabel2.setFont(new java.awt.Font("Titillium Web", 0, 28));
     jLabel2.setText("First Name");

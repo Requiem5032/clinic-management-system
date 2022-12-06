@@ -31,7 +31,7 @@ public class HomePage extends javax.swing.JFrame {
     });
 
     jLabel1.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel1.setText("Doctor table ");
+    jLabel1.setText("Doctor table");
 
     deleteFrameButton.setFont(new java.awt.Font("Titillium Web", 0, 20));
     deleteFrameButton.setText("Delete");
@@ -216,7 +216,6 @@ public class HomePage extends javax.swing.JFrame {
       }
     });
   }
-
 
   private javax.swing.JButton addFrameButton;
   private javax.swing.JButton deleteFrameButton;

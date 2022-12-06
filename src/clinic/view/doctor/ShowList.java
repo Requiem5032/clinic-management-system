@@ -1,7 +1,7 @@
 package clinic.view.doctor;
 
 import clinic.view.MainPage;
-import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import clinic.controller.DoctorController;
 
 public class ShowList extends javax.swing.JFrame {
@@ -31,14 +31,15 @@ public class ShowList extends javax.swing.JFrame {
         Object[] data = {id, firstName, lastName, position};
         tableModel.addRow(data);
       }
-    } catch (SQLException e) {
+    } catch (Exception e) {
       System.out.println(e);
+      JOptionPane.showMessageDialog(this, "Something went wrong!");
     }
 
     fullTable.setPreferredSize(new java.awt.Dimension(1050, 550));
     jScrollPane1.setViewportView(fullTable);
     jLabel1.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel1.setText("Doctor table ");
+    jLabel1.setText("Doctor table");
     backButton.setText("OK");
     backButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -21,10 +21,10 @@ public class ShowRecordA extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jLabel1.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel1.setText("Doctor search ");
+    jLabel1.setText("Doctor table");
 
     jLabel2.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel2.setText("Search ID to show");
+    jLabel2.setText("Search ID");
     
     jLabel3.setFont(new java.awt.Font("Titillium Web", 0, 20));
     jLabel3.setText("(6 digits)");
@@ -99,7 +99,7 @@ public class ShowRecordA extends javax.swing.JFrame {
 
   private java.util.List<String> confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
     if (searchTextField.getText().equals((""))) {
-      JOptionPane.showMessageDialog(this, "Please enter data to search !");
+      JOptionPane.showMessageDialog(this, "Please enter data to search!");
       return null;
     } else {
       try {
@@ -110,7 +110,7 @@ public class ShowRecordA extends javax.swing.JFrame {
         return data;
       } catch (Exception e) {
         System.out.println(e);
-        JOptionPane.showMessageDialog(this, "Invalid ID");
+        JOptionPane.showMessageDialog(this, "Invalid ID!");
         return null;
       }
     }

@@ -261,9 +261,9 @@ public class MainPage extends javax.swing.JFrame {
   }
 
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-    // clinic.view.med.HomePage med = new clinic.view.med.HomePage();
-    // med.setVisible(true);
-    // this.dispose();
+    clinic.view.med.HomePage med = new clinic.view.med.HomePage();
+    med.setVisible(true);
+    this.dispose();
   }
 
   private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
