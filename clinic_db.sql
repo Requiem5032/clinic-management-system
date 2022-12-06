@@ -3,26 +3,26 @@ CREATE DATABASE clinic;
 USE clinic;
 
 CREATE TABLE employee (
-  id VARCHAR(6) NOT NULL,
+  id CHAR(6) NOT NULL,
   first_name VARCHAR(50) NULL,
   last_name VARCHAR(50) NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE doctor (
-  id VARCHAR(6) NOT NULL,
+  id CHAR(6) NOT NULL,
   position VARCHAR(50) NULL,
   FOREIGN KEY (id) REFERENCES employee(id)
 );
 
 CREATE TABLE nurse (
-  id VARCHAR(6) NOT NULL,
+  id CHAR(6) NOT NULL,
   position VARCHAR(50) NULL,
   FOREIGN KEY (id) REFERENCES employee(id)
 );
   
 CREATE TABLE medicine (
-  id VARCHAR(5) NOT NULL,
+  id CHAR(5) NOT NULL,
   name VARCHAR(50) NULL,
   price DOUBLE NULL,
   quantity INT NULL,
@@ -30,17 +30,15 @@ CREATE TABLE medicine (
 );
 
 CREATE TABLE patient (
-  pid VARCHAR(6) NOT NULL,
-  nid VARCHAR(10) NULL,
+  pid CHAR(6) NOT NULL,
+  nid CHAR(10) NULL,
   first_name VARCHAR(50) NULL,
   last_name VARCHAR(50) NULL,
   age INT NULL,
-  gender TINYINT(1) NULL,
+  gender BOOLEAN NULL,
   address VARCHAR(250) NULL,
   PRIMARY KEY (pid)
 );
-
-SET GLOBAL local_infile = 1;
 
 LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/employee_info.csv' INTO TABLE employee
 FIELDS TERMINATED BY ','
