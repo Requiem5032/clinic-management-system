@@ -111,15 +111,14 @@ public class UpdateA extends javax.swing.JFrame {
   }
 
   private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
-
     if (searchTextField.getText().equals((""))) {
-      JOptionPane.showMessageDialog(this, "Please enter data to search!");
+      JOptionPane.showMessageDialog(this, "Please enter data!");
     } else {
       try {
         data = searchTextField.getText();
         nurCtrl.getRecord(data);
-        UpdateB ok = new UpdateB();
-        ok.setVisible(true);
+        UpdateB confirm = new UpdateB();
+        confirm.setVisible(true);
         this.dispose();
       } catch (Exception e) {
         System.out.println(e);

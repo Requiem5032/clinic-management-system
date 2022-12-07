@@ -64,7 +64,7 @@ public class UpdateB extends javax.swing.JFrame {
     });
 
     homeButton.setBackground(new java.awt.Color(243, 243, 243));
-    homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/home.png")));
+    homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clinic/view/icon/home.png")));
     homeButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         homeButtonActionPerformed(evt);
@@ -180,10 +180,13 @@ public class UpdateB extends javax.swing.JFrame {
     if (firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("")
         || genderTextField.getText().equals("") || ageTextField.getText().equals("")
         || addressTextField.getText().equals("")) {
-      JOptionPane.showMessageDialog(this, "Please enter data to search!");
+      JOptionPane.showMessageDialog(this, "Please enter data!");
     } else {
       try {
-      JOptionPane.showMessageDialog(this, "Update data sucessefully!");
+        patCtrl.updateRecord(UpdateA.data, firstNameTextField.getText(),
+            lastNameTextField.getText(), Integer.parseInt(ageTextField.getText()),
+            Boolean.parseBoolean(genderTextField.getText()), addressTextField.getText());
+        JOptionPane.showMessageDialog(this, "Update data sucessefully!");
       } catch (Exception e) {
         System.out.println(e);
         JOptionPane.showMessageDialog(this, "Update failed!");

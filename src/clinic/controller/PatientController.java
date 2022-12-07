@@ -29,9 +29,9 @@ public class PatientController {
     System.out.println(result);
   }
 
-  public void updateRecord(String pid, String nid, String firstName, String lastName, int age,
+  public void updateRecord(String pid, String firstName, String lastName, int age,
       boolean gender, String addr) throws SQLException {
-    model = new Patient(pid, nid, firstName, lastName, age, gender, addr);
+    model = new Patient(pid, null, firstName, lastName, age, gender, addr);
 
     int result = patientDao.update(model);
 
