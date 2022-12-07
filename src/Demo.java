@@ -1,7 +1,5 @@
 public class Demo {
   public static void main(String[] args) throws Exception {
-    // clinic.controller.PatientController ctrl = new clinic.controller.PatientController();
-    // ctrl.insertRecord("1", "null", "null", "null", 0, false, "null");
     try {
       for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
           .getInstalledLookAndFeels()) {

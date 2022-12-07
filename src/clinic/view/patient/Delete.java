@@ -49,7 +49,7 @@ public class Delete extends javax.swing.JFrame {
     jLabel4.setText("You can find PID in full list ");
 
     homeButton2.setBackground(new java.awt.Color(243, 243, 243));
-    homeButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/home.png")));
+    homeButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clinic/view/icon/home.png")));
     homeButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         homeButton2ActionPerformed(evt);
