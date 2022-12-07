@@ -104,8 +104,8 @@ public class ShowRecordA extends javax.swing.JFrame {
     } else {
       try {
         data = docCtrl.getRecord(searchTextField.getText());
-        ShowRecordB ok = new ShowRecordB();
-        ok.setVisible(true);
+        ShowRecordB confirm = new ShowRecordB();
+        confirm.setVisible(true);
         this.dispose();
         return data;
       } catch (Exception e) {
