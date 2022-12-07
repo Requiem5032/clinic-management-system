@@ -22,7 +22,7 @@ CREATE TABLE nurse (
 );
   
 CREATE TABLE medicine (
-  id CHAR(5) NOT NULL,
+  id CHAR(6) NOT NULL,
   name VARCHAR(50) NULL,
   price DOUBLE NULL,
   quantity INT NULL,
