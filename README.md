@@ -4,12 +4,9 @@
   </div>
 </h1>
 
-<figure >
-  <center>
-    <img src="signature.jpg" alt="Signature"/>
-    <figcaption>Meisje met de parel by Johannes Vermeer</figcaption>
-  </center>
-</figure>
+<p align="center">
+  <img src="signature.jpg" alt="Signature"/>
+</p>
 
 ## ***Member list:***
 
