@@ -24,7 +24,7 @@
 
 ## ***Part 2: Installation Step***
 
-- Step 1: Create new folder, open this new folder in vscode, open terminal and write this statment to clone the project
+- Step 1: Create new folder, open this new folder in vscode, open terminal and write this statement to clone the project
 
 ```lang-non
   git clone <https://github.com/Requiem5032/java-project>
