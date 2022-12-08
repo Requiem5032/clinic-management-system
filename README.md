@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  <img src="signature.jpg" alt="Signature"/>
+  <img src="signature.jpg" alt="Figure Signature"/>
 </p>
 
 ## ***Member list:***
@@ -19,93 +19,87 @@
 
 ## ***Part 1: System Requirement***
 
-- Install visual studio code with java jdk and code runner extension, mysql, git command to clone the project (you can use another text editors or IDE likes Eclipse, NetBeans but in this instruction we will demonstrate using VSCode)
-- You should use the latest version
+- Install Visual Studio Code with Extension Pack for Java, JDK, MySQL (you can use another text editors or IDE likes Eclipse, NetBeans but in this instruction we will demonstrate using VSCode)
 
 ## ***Part 2: Installation Step***
 
-- Step 1: Create new folder, open this new folder in vscode, open terminal and write this statement to clone the project
+- Step 1: Create new folder, open this new folder in VSCode, open terminal and clone the project
 
 ```lang-non
   git clone <https://github.com/Requiem5032/java-project>
 ```
 
-- Step 2: Open My SQL, click the plus sign to create new connection
+- Step 2: Open MySQL, click the plus sign to create a new connection
 
 <p align="center">
-  <img src="Tutorials/Figure 1.png" alt="Figure 1"/>
+  <img src="Tutorials/1.png" alt="Figure 1"/>
 </p>
 
-- Step 3: Type the name of the connection then click ok, after that click on the connection that you just create and type password
+- Step 3: Enter the name for the connection and click ok, then connect to that connection
 
 <p align="center">
-  <img src="Tutorials/Figure 2.png" alt="Figure 2"/>
-  <img src="Tutorials/Figure 3.png" alt="Figure 3"/>
+  <img src="Tutorials/2.png" alt="Figure 2"/>
 </p>
 
-- Step 4: In connection window, click on query and type this statement, then click on lighting icon to execute
-
-```lang-non
-  SET GLOBAL local_infile = 'ON';
-```
+- Step 4: Right click the connection and select "Edit Connection..."
 
 <p align="center">
-  <img src="Tutorials/Figure 4.png" alt="Figure 4"/> 
-  <img src="Tutorials/Figure 5.png" alt="Figure 5"/>
+  <img src="Tutorials/3.png" alt="Figure 3"/>
 </p>
 
-- Step 5: Go back to main back, left-click on the connection and then click on edit connection
-- Step 6: Click on advanced and then in the others box, you add this statement. After that you click the close button
+- Step 5: Select "Advanced" tab and add this line
 
 ```lang-non
   OPT_LOCAL_INFILE=1
 ```
 
 <p align="center">
-  <img src="Tutorials/Figure 6.png" alt="Figure 6"/>
-  <img src="Tutorials/Figure 7.png" alt="Figure 7"/>
-  <img src="Tutorials/Figure 8.png" alt="Figure 8"/>
+  <img src="Tutorials/4.png" alt="Figure 4"/>
+  <img src="Tutorials/5.png" alt="Figure 5"/>
 </p>
 
-- Step 7: Go back to vscode, in the clone folder, open the file name “clinic_db.sql”
-- Step 8: Change this directory in this line to your computer directory, then save
+- Step 6: Select the connection that you have created and run this query to enable local_infile
+
+```lang-non
+  SET GLOBAL local_infile = 1;
+```
 
 <p align="center">
-  <img src="Tutorials/Figure 9.png" alt="Figure 9"/>
+  <img src="Tutorials/6.png" alt="Figure 6"/> 
 </p>
 
-> *Note: You can use file explore in window 10,11 to find your directory, this “ \ “ and this “/” are diffrent*
-
-- Step 9: Go to folder src/clinic/connect, open the “DBconnection” file, change the port, connection name, connection password to your, then save
+- Step 7: Open “clinic_db.sql”
+- Step 8: Change LOAD DATA LOCAL INFILE directory to match the location of your .csv and execute the query.
 
 <p align="center">
-  <img src="Tutorials/Figure 10.png" alt="Figure 10"/>
+  <img src="Tutorials/7.png" alt="Figure 7"/>
 </p>
 
-- Step 10: In the file explore, click on java projects, scroll down and click on referenced libaries
+> *Note: You can use file explorer in Windows 10,11 to find your directory, this “ \ “ and this “/” are different*
+
+- Step 9: Go to folder src/clinic/connection, open the “DBconnection” file, change the port, connection name, connection password to your, then save
 
 <p align="center">
-  <img src="Tutorials/Figure 11.png" alt="Figure 11"/>
-  <img src="Tutorials/Figure 12.png" alt="Figure 12"/>
+  <img src="Tutorials/8.png" alt="Figure 8"/>
 </p>
 
-- Step 11: In referenced libaries, click on plus sign button, then add the “mysql-connector-j-8.0.31.rar” (the file name may be diffrent depend on the version), click the button “select jar libaries”
+- Step 10: In the file explorer, click on "Java Projects", scroll down and click on "Referenced Libraries"
 
 <p align="center">
-  <img src="Tutorials/Figure 13.png" alt="Figure 13"/>
+  <img src="Tutorials/9.png" alt="Figure 9"/>
+  <img src="Tutorials/10.png" alt="Figure 10"/>
 </p>
 
-> *Note: You can find this file on folder Connect J 80 (or similar name) on your computer MySQL propram files*
-
-- Step 11: Go back My SQL, click on database connections you have created before to open connection window
-- Step 12: Open SQL script, click on file name “clinic_db.sql” on your clone folder to open, click on lighting button to run and then click the reload button on schema table . If the system have error, try to drop schema and run again.
+- Step 11: In "Referenced Libraries", click on plus sign button, then add “mysql-connector-j-8.0.31.jar” to the project(the file name may be diffrent depend on the version)
 
 <p align="center">
-  <img src="Tutorials/Figure 14.png" alt="Figure 14"/>
+  <img src="Tutorials/11.png" alt="Figure 11"/>
 </p>
+
+> *Note: You can find this file in folder Connect J 80 (or similar name) on your computer MySQL program files*
 
 - Step 13: Finally you run Demo.java and the homepage will appear
 
 <p align="center">
-  <img src="Tutorials/Figure 15.png" alt="Figure 15"/>
+  <img src="Tutorials/12.png" alt="Figure 12"/>
 </p>
