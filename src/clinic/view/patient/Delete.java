@@ -113,7 +113,7 @@ public class Delete extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Delete data sucessefully!");
       } catch (Exception e) {
         System.out.println(e);
-        JOptionPane.showMessageDialog(this, "Invalid ID!");
+        JOptionPane.showMessageDialog(this, "Invalid ID");
       }
     }
   }
