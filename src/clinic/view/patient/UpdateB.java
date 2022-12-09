@@ -174,7 +174,7 @@ public class UpdateB extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(this, "Please enter all data!");
     } else {
       try {
-        patCtrl.updateRecord(UpdateA.data, firstNameTextField.getText(),
+        ctrl.updateRecord(UpdateA.data, firstNameTextField.getText(),
             lastNameTextField.getText(), Integer.parseInt(ageTextField.getText()),
             Boolean.parseBoolean(genderTextField.getText()), addressTextField.getText());
         JOptionPane.showMessageDialog(this, "Update successfully!");
@@ -241,5 +241,5 @@ public class UpdateB extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel5;
   private javax.swing.JTextField lastNameTextField;
-  private PatientController patCtrl = new PatientController();
+  private PatientController ctrl = new PatientController();
 }

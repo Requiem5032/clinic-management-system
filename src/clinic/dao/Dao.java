@@ -4,11 +4,11 @@ import java.sql.SQLException;
 import java.util.*;
 
 public interface Dao<T> {
-  T get(String id) throws SQLException;
+  List<T> get(String name) throws SQLException;
 
   List<T> get() throws SQLException;
 
-  List<String> getList(String id) throws SQLException;
+  List<List<String>> getList(String name) throws SQLException;
 
   List<List<String>> getList() throws SQLException;
 
@@ -16,5 +16,5 @@ public interface Dao<T> {
 
   int update(T object) throws SQLException;
 
-  int delete(T object) throws SQLException;
+  int delete(String id) throws SQLException;
 }

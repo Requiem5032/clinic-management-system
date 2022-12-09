@@ -2,48 +2,40 @@ CREATE DATABASE clinic;
 
 USE clinic;
 
-CREATE TABLE employee (
-  id CHAR(6) NOT NULL,
-  first_name VARCHAR(50) NULL,
-  last_name VARCHAR(50) NULL,
+CREATE TABLE doctor (
+  id INT AUTO_INCREMENT,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  position VARCHAR(50),	
   PRIMARY KEY (id)
 );
 
-CREATE TABLE doctor (
-  id CHAR(6) NOT NULL,
-  position VARCHAR(50) NULL,
-  FOREIGN KEY (id) REFERENCES employee(id)
-);
-
 CREATE TABLE nurse (
-  id CHAR(6) NOT NULL,
-  position VARCHAR(50) NULL,
-  FOREIGN KEY (id) REFERENCES employee(id)
+  id INT AUTO_INCREMENT,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  position VARCHAR(50),
+  PRIMARY KEY (id)
 );
   
 CREATE TABLE medicine (
-  id CHAR(6) NOT NULL,
-  name VARCHAR(50) NULL,
-  price DOUBLE NULL,
-  quantity INT NULL,
+  id INT AUTO_INCREMENT,
+  name VARCHAR(50),
+  price DOUBLE,
+  quantity INT,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE patient (
-  pid CHAR(6) NOT NULL,
-  nid CHAR(10) NULL,
-  first_name VARCHAR(50) NULL,
-  last_name VARCHAR(50) NULL,
-  age INT NULL,
-  gender BOOLEAN NULL,
-  address VARCHAR(250) NULL,
+  pid INT AUTO_INCREMENT,
+  nid CHAR(10),
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  age INT,
+  gender BOOLEAN,
+  address VARCHAR(250),
   PRIMARY KEY (pid)
 );
-
-LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/employee_info.csv' INTO TABLE employee
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;
 
 LOAD DATA LOCAL INFILE 'C:/Workspaces/Java/java-project/doctor_info.csv' INTO TABLE doctor
 FIELDS TERMINATED BY ','

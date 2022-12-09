@@ -11,12 +11,10 @@ public class Delete extends javax.swing.JFrame {
 
   private void initComponents() {
     jLabel1 = new javax.swing.JLabel();
-    jScrollBar1 = new javax.swing.JScrollBar();
     deteleButton = new javax.swing.JButton();
     backButton = new javax.swing.JButton();
     jLabel2 = new javax.swing.JLabel();
     deleteTextField = new javax.swing.JTextField();
-    jLabel3 = new javax.swing.JLabel();
     jLabel4 = new javax.swing.JLabel();
     homeButton2 = new javax.swing.JButton();
 
@@ -42,14 +40,12 @@ public class Delete extends javax.swing.JFrame {
     jLabel2.setFont(new java.awt.Font("Titillium Web", 0, 28));
     jLabel2.setText("Search PID");
 
-    jLabel3.setFont(new java.awt.Font("Titillium Web", 0, 20));
-    jLabel3.setText("(6 digits)");
-
     jLabel4.setForeground(new java.awt.Color(102, 102, 102));
     jLabel4.setText("You can find PID in full list ");
 
     homeButton2.setBackground(new java.awt.Color(243, 243, 243));
-    homeButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clinic/view/icon/home.png")));
+    homeButton2
+        .setIcon(new javax.swing.ImageIcon(getClass().getResource("/clinic/view/icon/home.png")));
     homeButton2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         homeButton2ActionPerformed(evt);
@@ -61,9 +57,7 @@ public class Delete extends javax.swing.JFrame {
     layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup().addGap(294, 294, 294).addComponent(jLabel4,
             javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGroup(layout.createSequentialGroup().addGap(1072, 1072, 1072).addComponent(jScrollBar1,
-            javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-            javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGroup(layout.createSequentialGroup().addGap(1072, 1072, 1072))
         .addGroup(layout.createSequentialGroup().addGap(30, 30, 30)
             .addComponent(homeButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -84,10 +78,7 @@ public class Delete extends javax.swing.JFrame {
                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(16, 16, 16).addComponent(deleteTextField,
                                 javax.swing.GroupLayout.PREFERRED_SIZE, 370,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(23, 23, 23).addComponent(jLabel3,
-                        javax.swing.GroupLayout.PREFERRED_SIZE, 123,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)))));
+                                javax.swing.GroupLayout.PREFERRED_SIZE)))))));
     layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup().addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,15 +87,11 @@ public class Delete extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup().addGap(12, 12, 12).addComponent(jLabel2))
                 .addComponent(deleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
                     javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(6, 6, 6)
             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(74, 74, 74)
-            .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117,
                 Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -121,9 +108,9 @@ public class Delete extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(this, "Please enter data to delete !");
     } else {
       try {
-      String data = deleteTextField.getText();
-      patCtrl.deleteRecord(data);
-      JOptionPane.showMessageDialog(this, "Delete data sucessefully!");
+        String data = deleteTextField.getText();
+        ctrl.deleteRecord(data);
+        JOptionPane.showMessageDialog(this, "Delete data sucessefully!");
       } catch (Exception e) {
         System.out.println(e);
         JOptionPane.showMessageDialog(this, "Invalid ID!");
@@ -179,8 +166,6 @@ public class Delete extends javax.swing.JFrame {
   private javax.swing.JButton homeButton2;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
-  private javax.swing.JScrollBar jScrollBar1;
-  private PatientController patCtrl = new PatientController();
+  private PatientController ctrl = new PatientController();
 }

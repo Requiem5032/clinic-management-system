@@ -16,8 +16,8 @@ public class UpdateB extends javax.swing.JFrame {
     jLabel4 = new javax.swing.JLabel();
     updateButton = new javax.swing.JButton();
     nameField = new javax.swing.JTextField();
-    priceField = new javax.swing.JTextField();
     quantityField = new javax.swing.JTextField();
+    priceField = new javax.swing.JTextField();
     backButton = new javax.swing.JButton();
     homeButton = new javax.swing.JButton();
 
@@ -85,10 +85,10 @@ public class UpdateB extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout
                             .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(priceField, javax.swing.GroupLayout.DEFAULT_SIZE, 544,
-                                Short.MAX_VALUE)
-                            .addComponent(quantityField)
-                            .addComponent(nameField, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(priceField, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                544, Short.MAX_VALUE)
+                            .addComponent(quantityField).addComponent(nameField,
+                                javax.swing.GroupLayout.Alignment.LEADING))))
                     .addContainerGap(66, Short.MAX_VALUE))
                 .addGroup(layout.createSequentialGroup().addComponent(jLabel1)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))));
@@ -131,7 +131,7 @@ public class UpdateB extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(this, "Please enter data!");
     } else {
       try {
-        medCtrl.updateRecord(UpdateA.data, nameField.getText(),
+        ctrl.updateRecord(UpdateA.data, nameField.getText(),
             Double.parseDouble(priceField.getText()), Integer.parseInt(quantityField.getText()));
         JOptionPane.showMessageDialog(this, "Update data sucessefully!");
       } catch (Exception e) {
@@ -193,5 +193,5 @@ public class UpdateB extends javax.swing.JFrame {
   private javax.swing.JTextField priceField;
   private javax.swing.JTextField quantityField;
   private javax.swing.JButton updateButton;
-  private MedController medCtrl = new MedController();
+  private MedController ctrl = new MedController();
 }

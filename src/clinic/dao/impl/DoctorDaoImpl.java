@@ -10,42 +10,39 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   private Connection con;
 
   @Override
-  public Doctor get(String id) throws SQLException {
+  public List<Doctor> get(String name) throws SQLException {
     con = DBConnection.createDBConnection();
     Doctor model = null;
-    String query =
-        "SELECT employee.id, employee.first_name, employee.last_name, doctor.position FROM doctor INNER JOIN employee ON employee.id = doctor.id WHERE employee.id = ?";
-
+    String query = "SELECT * FROM doctor WHERE first_name REGEXP ?";
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, id);
-
+    ps.setString(1, ".*" + name + ".*");
     ResultSet rs = ps.executeQuery();
 
-    if (rs.next()) {
+    int row = rs.getRow();
+    List<Doctor> objectList = new ArrayList<Doctor>(row);
+
+    while (rs.next()) {
       String doctorId = rs.getString("id");
       String firstName = rs.getString("first_name");
       String lastName = rs.getString("last_name");
       String position = rs.getString("position");
 
       model = new Doctor(doctorId, firstName, lastName, position);
+      objectList.add(model);
     }
 
-    return model;
+    return objectList;
   }
 
   @Override
   public List<Doctor> get() throws SQLException {
     con = DBConnection.createDBConnection();
     Doctor model = null;
-
-    String query =
-        "SELECT employee.id, employee.first_name, employee.last_name, doctor.position FROM doctor INNER JOIN employee ON employee.id = doctor.id ORDER BY employee.id ASC";
-
+    String query = "SELECT * FROM doctor";
     Statement stmt = con.createStatement();
     ResultSet rs = stmt.executeQuery(query);
 
     int row = rs.getRow();
-
     List<Doctor> objectList = new ArrayList<Doctor>(row);
 
     while (rs.next()) {
@@ -62,22 +59,39 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   }
 
   @Override
-  public List<String> getList(String id) throws SQLException {
-    Doctor model = get(id);
-    List<String> data = new ArrayList<String>();
-    data.add(model.getId());
-    data.add(model.getFirstName());
-    data.add(model.getLastName());
-    data.add(model.getPosition());
+  public List<List<String>> getList(String name) throws SQLException {
+    con = DBConnection.createDBConnection();
+    String query = "SELECT * FROM doctor WHERE first_name REGEXP ?";
+    PreparedStatement ps = con.prepareStatement(query);
+    ps.setString(1, ".*" + name + ".*");
+    ResultSet rs = ps.executeQuery();
+    ResultSetMetaData rsmd = rs.getMetaData();
 
-    return data;
+    int row = rs.getRow();
+    int col = rsmd.getColumnCount();
+    List<List<String>> objectList = new ArrayList<List<String>>(row);
+
+    while (rs.next()) {
+      String id = rs.getString("id");
+      String firstName = rs.getString("first_name");
+      String lastName = rs.getString("last_name");
+      String position = rs.getString("position");
+
+      List<String> temp = new ArrayList<String>(col);
+      temp.add(id);
+      temp.add(firstName);
+      temp.add(lastName);
+      temp.add(position);
+      objectList.add(temp);
+    }
+
+    return objectList;
   }
 
   @Override
   public List<List<String>> getList() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query =
-        "SELECT employee.id, employee.first_name, employee.last_name, doctor.position FROM doctor INNER JOIN employee ON employee.id = doctor.id ORDER BY employee.id ASC";
+    String query = "SELECT * FROM doctor";
 
     Statement stmt = con.createStatement();
     ResultSet rs = stmt.executeQuery(query);
@@ -109,15 +123,12 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   public int insert(Doctor object) throws SQLException {
     con = DBConnection.createDBConnection();
 
-    String query =
-        "INSERT INTO employee (id, first_name, last_name) VALUE (?, ?, ?); INSERT INTO doctor (id, position) VALUES (?, ?)";
+    String query = "INSERT INTO doctor (first_name, last_name , position) VALUES (?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, object.getId());
-    ps.setString(2, object.getFirstName());
-    ps.setString(3, object.getLastName());
-    ps.setString(4, object.getId());
-    ps.setString(5, object.getPosition());
+    ps.setString(1, object.getFirstName());
+    ps.setString(2, object.getLastName());
+    ps.setString(3, object.getPosition());
 
     int result = ps.executeUpdate();
 
@@ -130,16 +141,14 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   @Override
   public int update(Doctor object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query =
-        "UPDATE doctor SET position = ? WHERE id = ?; UPDATE employee SET first_name = ?, last_name = ? WHERE id = ?";
+    String query = "UPDATE doctor SET first_name = ?, last_name = ?, position = ? WHERE id = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
 
-    ps.setString(1, object.getPosition());
-    ps.setString(2, object.getId());
-    ps.setString(3, object.getFirstName());
-    ps.setString(4, object.getLastName());
-    ps.setString(5, object.getId());
+    ps.setString(1, object.getFirstName());
+    ps.setString(2, object.getLastName());
+    ps.setString(3, object.getPosition());
+    ps.setString(4, object.getId());
 
     int result = ps.executeUpdate();
 
@@ -150,14 +159,13 @@ public class DoctorDaoImpl implements Dao<Doctor> {
   }
 
   @Override
-  public int delete(Doctor object) throws SQLException {
+  public int delete(String id) throws SQLException {
     con = DBConnection.createDBConnection();
 
-    String query =
-        "DELETE FROM employee, doctor USING doctor INNER JOIN employee ON employee.id = doctor.id WHERE doctor.id = ?";
+    String query = "DELETE FROM doctor WHERE id = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, object.getId());
+    ps.setString(1, id);
 
     int result = ps.executeUpdate();
 

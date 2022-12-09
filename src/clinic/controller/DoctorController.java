@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class DoctorController {
-  private Doctor model = null;
   private Dao<Doctor> doctorDao = new DoctorDaoImpl();
 
-  public List<String> getRecord(String id) throws SQLException {
-    List<String> data = doctorDao.getList(id);
+  public List<List<String>> getRecord(String name) throws SQLException {
+    List<List<String>> data = doctorDao.getList(name);
     return data;
   }
 
@@ -20,18 +19,16 @@ public class DoctorController {
     return data;
   }
 
-  public void insertRecord(String id, String firstName, String lastName, String position)
-      throws SQLException {
-    model = new Doctor(id, firstName, lastName, position);
+  public void insertRecord(String firstName, String lastName, String position) throws SQLException {
+    Doctor model = new Doctor(null, firstName, lastName, position);
 
     int result = doctorDao.insert(model);
 
     System.out.println(result);
   }
 
-  public void updateRecord(String id, String firstName, String lastName, String position)
-      throws SQLException {
-    model = new Doctor(id, firstName, lastName, position);
+  public void updateRecord(String id, String firstName, String lastName, String position) throws SQLException {
+    Doctor model = new Doctor(id, firstName, lastName, position);
 
     int result = doctorDao.update(model);
 
@@ -39,9 +36,7 @@ public class DoctorController {
   }
 
   public void deleteRecord(String id) throws SQLException {
-    model = doctorDao.get(id);
-
-    int result = doctorDao.delete(model);
+    int result = doctorDao.delete(id);
 
     System.out.println(result);
   }

@@ -131,7 +131,7 @@ public class UpdateB extends javax.swing.JFrame {
       JOptionPane.showMessageDialog(this, "Please enter data!");
     } else {
       try {
-        docCtrl.updateRecord(UpdateA.data, firstNameTextField.getText(),
+        ctrl.updateRecord(UpdateA.data, firstNameTextField.getText(),
             lastNameTextField.getText(), positionTextField.getText());
         JOptionPane.showMessageDialog(this, "Update data sucessefully!");
       } catch (Exception e) {
@@ -193,5 +193,5 @@ public class UpdateB extends javax.swing.JFrame {
   private javax.swing.JTextField lastNameTextField;
   private javax.swing.JTextField positionTextField;
   private javax.swing.JButton updateButton;
-  private DoctorController docCtrl = new DoctorController();
+  private DoctorController ctrl = new DoctorController();
 }

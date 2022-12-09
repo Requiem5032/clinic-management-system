@@ -18,12 +18,9 @@ public class Add extends javax.swing.JFrame {
     addButton = new javax.swing.JButton();
     backButton = new javax.swing.JButton();
     homeButton = new javax.swing.JButton();
-    jLabel7 = new javax.swing.JLabel();
-    jLabel6 = new javax.swing.JLabel();
     jLabel8 = new javax.swing.JLabel();
     jLabel10 = new javax.swing.JLabel();
     jLabel11 = new javax.swing.JLabel();
-    pidTextField = new javax.swing.JTextField();
     nidTextField = new javax.swing.JTextField();
     lastNameTextField = new javax.swing.JTextField();
     firstNameTextField = new javax.swing.JTextField();
@@ -43,12 +40,6 @@ public class Add extends javax.swing.JFrame {
 
     jLabel5.setFont(new java.awt.Font("Titillium Web", 0, 28));
     jLabel5.setText("Address");
-
-    jLabel7.setFont(new java.awt.Font("Titillium Web", 0, 20));
-    jLabel7.setText("(6 digits)");
-
-    jLabel6.setFont(new java.awt.Font("Titillium Web", 0, 28));
-    jLabel6.setText("PID");
 
     jLabel8.setFont(new java.awt.Font("Titillium Web", 0, 28));
     jLabel8.setText("NID");
@@ -93,29 +84,23 @@ public class Add extends javax.swing.JFrame {
                     .addGap(210, 210, 210).addComponent(jLabel1,
                         javax.swing.GroupLayout.PREFERRED_SIZE, 180,
                         javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createSequentialGroup().addGap(280, 280, 280)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(47, 47, 47)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 542,
-                            javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(8, 8, 8).addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE,
-                        123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createSequentialGroup().addGap(280, 280, 280).addGap(47, 47, 47)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGap(8, 8, 8))
                 .addGroup(layout.createSequentialGroup().addGap(280, 280, 280)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 123,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(47, 47, 47).addComponent(nidTextField,
                         javax.swing.GroupLayout.PREFERRED_SIZE, 542,
                         javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createSequentialGroup().addGap(280, 280, 280).addComponent(jLabel3)
-                    .addGap(40, 40, 40).addComponent(lastNameTextField,
-                        javax.swing.GroupLayout.PREFERRED_SIZE, 542,
-                        javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createSequentialGroup().addGap(280, 280, 280)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(36, 36, 36).addComponent(firstNameTextField,
+                        javax.swing.GroupLayout.PREFERRED_SIZE, 542,
+                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createSequentialGroup().addGap(280, 280, 280).addComponent(jLabel3)
+                    .addGap(40, 40, 40).addComponent(lastNameTextField,
                         javax.swing.GroupLayout.PREFERRED_SIZE, 542,
                         javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createSequentialGroup().addGap(280, 280, 280)
@@ -144,7 +129,7 @@ public class Add extends javax.swing.JFrame {
                         .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 542,
                             javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(genderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 542,
-                            javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(45, 45, 45)))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
     layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup().addGap(6, 6, 6)
@@ -153,12 +138,7 @@ public class Add extends javax.swing.JFrame {
                     javax.swing.GroupLayout.PREFERRED_SIZE, 37,
                     javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(47, 47, 47)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel6)
-                .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
-                    javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40,
-                    javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING))
             .addGap(30, 30, 30)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel8).addComponent(nidTextField,
@@ -166,12 +146,12 @@ public class Add extends javax.swing.JFrame {
                     javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(30, 30, 30)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel3).addComponent(lastNameTextField,
+                .addComponent(jLabel2).addComponent(firstNameTextField,
                     javax.swing.GroupLayout.PREFERRED_SIZE, 40,
                     javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(30, 30, 30)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2).addComponent(firstNameTextField,
+                .addComponent(jLabel3).addComponent(lastNameTextField,
                     javax.swing.GroupLayout.PREFERRED_SIZE, 40,
                     javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(30, 30, 30)
@@ -200,16 +180,14 @@ public class Add extends javax.swing.JFrame {
   }
 
   private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    if (pidTextField.getText().equals("") || nidTextField.getText().equals("")
-        || firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("")
-        || ageTextField.getText().equals("") || genderTextField.getText().equals("")
-        || addressTextField.getText().equals("")) {
+    if (nidTextField.getText().equals("") || firstNameTextField.getText().equals("")
+        || lastNameTextField.getText().equals("") || ageTextField.getText().equals("")
+        || genderTextField.getText().equals("") || addressTextField.getText().equals("")) {
       JOptionPane.showMessageDialog(this, "Please enter all data!");
     } else {
       try {
-        patCtrl.insertRecord(pidTextField.getText(), nidTextField.getText(),
-            firstNameTextField.getText(), lastNameTextField.getText(),
-            Integer.parseInt(ageTextField.getText()),
+        ctrl.insertRecord(nidTextField.getText(), firstNameTextField.getText(),
+            lastNameTextField.getText(), Integer.parseInt(ageTextField.getText()),
             Boolean.parseBoolean(genderTextField.getText()), addressTextField.getText());
         JOptionPane.showMessageDialog(this, "Add data successfully!");
       } catch (Exception e) {
@@ -261,7 +239,6 @@ public class Add extends javax.swing.JFrame {
     });
   }
 
-  private javax.swing.JTextField pidTextField;
   private javax.swing.JTextField nidTextField;
   private javax.swing.JButton addButton;
   private javax.swing.JTextField addressTextField;
@@ -276,9 +253,7 @@ public class Add extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel5;
-  private javax.swing.JLabel jLabel6;
-  private javax.swing.JLabel jLabel7;
   private javax.swing.JLabel jLabel8;
   private javax.swing.JTextField lastNameTextField;
-  private PatientController patCtrl = new PatientController();
+  private PatientController ctrl = new PatientController();
 }

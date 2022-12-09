@@ -10,8 +10,47 @@ public class ShowList extends javax.swing.JFrame {
     initComponents();
   }
 
+  public ShowList(boolean state) {
+    this.state = state;
+    initComponents();
+  }
+
+  private void refreshTable() {
+    tableModel.setRowCount(0);
+    if (state == true) {
+      try {
+        java.util.List<java.util.List<String>> objectList = ctrl.getRecord();
+        for (int i = 0; i < objectList.size(); i++) {
+          String id = objectList.get(i).get(0);
+          String firstName = objectList.get(i).get(1);
+          String lastName = objectList.get(i).get(2);
+          String position = objectList.get(i).get(3);
+          Object[] object = {id, firstName, lastName, position};
+          tableModel.addRow(object);
+        }
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    } else {
+      try {
+        java.util.List<java.util.List<String>> objectList = ctrl.getRecord(ShowRecord.data);
+        for (int i = 0; i < objectList.size(); i++) {
+          String id = objectList.get(i).get(0);
+          String firstName = objectList.get(i).get(1);
+          String lastName = objectList.get(i).get(2);
+          String position = objectList.get(i).get(3);
+          Object[] object = {id, firstName, lastName, position};
+          tableModel.addRow(object);
+        }
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    }
+  }
+
   private void initComponents() {
     tableModel = new javax.swing.table.DefaultTableModel(col, 0);
+    deleteButton = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
     fullTable = new javax.swing.JTable(tableModel);
     jLabel1 = new javax.swing.JLabel();
@@ -21,25 +60,44 @@ public class ShowList extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    try {
-      java.util.List<java.util.List<String>> objectList = medCtrl.getRecord();
-      for (int i = 0; i < objectList.size(); i++) {
-        String id = objectList.get(i).get(0);
-        String firstName = objectList.get(i).get(1);
-        String lastName = objectList.get(i).get(2);
-        String position = objectList.get(i).get(3);
-        Object[] data = {id, firstName, lastName, position};
-        tableModel.addRow(data);
+    if (state == true) {
+      try {
+        java.util.List<java.util.List<String>> objectList = ctrl.getRecord();
+        for (int i = 0; i < objectList.size(); i++) {
+          String id = objectList.get(i).get(0);
+          String firstName = objectList.get(i).get(1);
+          String lastName = objectList.get(i).get(2);
+          String position = objectList.get(i).get(3);
+          Object[] object = {id, firstName, lastName, position};
+          tableModel.addRow(object);
+        }
+      } catch (Exception e) {
+        System.out.println(e);
+        JOptionPane.showMessageDialog(this, "Something went wrong!");
       }
-    } catch (Exception e) {
-      System.out.println(e);
-      JOptionPane.showMessageDialog(this, "Something went wrong!");
+    } else {
+      try {
+        java.util.List<java.util.List<String>> objectList = ctrl.getRecord(ShowRecord.data);
+        for (int i = 0; i < objectList.size(); i++) {
+          String id = objectList.get(i).get(0);
+          String firstName = objectList.get(i).get(1);
+          String lastName = objectList.get(i).get(2);
+          String position = objectList.get(i).get(3);
+          Object[] object = {id, firstName, lastName, position};
+          tableModel.addRow(object);
+        }
+      } catch (Exception e) {
+        System.out.println(e);
+        JOptionPane.showMessageDialog(this, "Something went wrong!");
+      }
     }
 
     fullTable.setPreferredSize(new java.awt.Dimension(1050, 550));
     jScrollPane1.setViewportView(fullTable);
+
     jLabel1.setFont(new java.awt.Font("Titillium Web", 0, 28));
     jLabel1.setText("Medicine table");
+
     backButton.setText("OK");
     backButton.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +114,13 @@ public class ShowList extends javax.swing.JFrame {
       }
     });
 
+    deleteButton.setText("Delete");
+    deleteButton.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        deleteButtonActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,8 +133,11 @@ public class ShowList extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup().addGap(58, 58, 58).addComponent(jLabel1))
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
-                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
+                                javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 839,
                             javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -89,9 +157,12 @@ public class ShowList extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520,
                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(40, 40, 40).addComponent(backButton,
-                        javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(40, 40, 40)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+                            javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+                            javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addContainerGap(34, Short.MAX_VALUE)));
     pack();
   }
@@ -106,6 +177,25 @@ public class ShowList extends javax.swing.JFrame {
     MainPage home = new MainPage();
     home.setVisible(true);
     this.dispose();
+  }
+
+  private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    javax.swing.table.DefaultTableModel model =
+        (javax.swing.table.DefaultTableModel) fullTable.getModel();
+    int selectedRow = fullTable.getSelectedRow();
+
+    if (selectedRow == -1) {
+      JOptionPane.showMessageDialog(null, "Please select a row!");
+    } else {
+      String id = model.getValueAt(selectedRow, 0).toString();
+      try {
+        ctrl.deleteRecord(id);
+        refreshTable();
+        JOptionPane.showMessageDialog(null, "Record removed!");
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    }
   }
 
   public static void main(String args[]) {
@@ -140,10 +230,12 @@ public class ShowList extends javax.swing.JFrame {
   private javax.swing.JButton backButton;
   private javax.swing.JTable fullTable;
   private javax.swing.JButton homeButton1;
+  private javax.swing.JButton deleteButton;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JScrollBar jScrollBar1;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.table.DefaultTableModel tableModel;
   private String[] col = {"ID", "Name", "Price", "Quantity"};
-  private MedController medCtrl = new MedController();
+  private MedController ctrl = new MedController();
+  private boolean state = true;
 }

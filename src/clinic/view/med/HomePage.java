@@ -163,8 +163,8 @@ public class HomePage extends javax.swing.JFrame {
   }
 
   private void fullListFrameButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    ShowList showList = new ShowList();
-    showList.setVisible(true);
+    ShowList full = new ShowList(true);
+    full.setVisible(true);
     this.dispose();
   }
 
@@ -175,8 +175,8 @@ public class HomePage extends javax.swing.JFrame {
   }
 
   private void showInfoFrameButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    ShowRecordA showRecord = new ShowRecordA();
-    showRecord.setVisible(true);
+    ShowRecord show = new ShowRecord();
+    show.setVisible(true);
     this.dispose();
   }
 

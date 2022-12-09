@@ -10,27 +10,28 @@ public class MedDaoImpl implements Dao<Med> {
   private Connection con;
 
   @Override
-  public Med get(String id) throws SQLException {
+  public List<Med> get(String name) throws SQLException {
     con = DBConnection.createDBConnection();
     Med model = null;
-
-    String query = "SELECT * FROM medicine WHERE id = ?";
-
+    String query = "SELECT * FROM medicine WHERE name REGEXP  ?";
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, id);
-
+    ps.setString(1, ".*" + name + ".*");
     ResultSet rs = ps.executeQuery();
 
-    if (rs.next()) {
-      String medId = rs.getString("id");
-      String name = rs.getString("name");
+    int row = rs.getRow();
+    List<Med> objectList = new ArrayList<Med>(row);
+
+    while (rs.next()) {
+      String id = rs.getString("id");
+      String medName = rs.getString("name");
       double price = rs.getDouble("price");
       int quantity = rs.getInt("quantity");
 
-      model = new Med(medId, name, price, quantity);
+      model = new Med(id, medName, price, quantity);
+      objectList.add(model);
     }
 
-    return model;
+    return objectList;
   }
 
   @Override
@@ -38,7 +39,7 @@ public class MedDaoImpl implements Dao<Med> {
     con = DBConnection.createDBConnection();
     Med model = null;
 
-    String query = "SELECT * FROM medicine ORDER BY id ASC";
+    String query = "SELECT * FROM medicine";
 
     Statement stmt = con.createStatement();
 
@@ -62,23 +63,39 @@ public class MedDaoImpl implements Dao<Med> {
   }
 
   @Override
-  public List<String> getList(String id) throws SQLException {
-    Med model = get(id);
-    List<String> data = new ArrayList<String>();
-    data.add(model.getId());
-    data.add(model.getName());
-    double tempPrice = model.getPrice();
-    data.add(Double.toString(tempPrice));
-    int tempQuantity = model.getQuantity();
-    data.add(Integer.toString(tempQuantity));
+  public List<List<String>> getList(String name) throws SQLException {
+    con = DBConnection.createDBConnection();
+    String query = "SELECT * FROM medicine WHERE name REGEXP ?";
+    PreparedStatement ps = con.prepareStatement(query);
+    ps.setString(1, ".*" + name + ".*");
+    ResultSet rs = ps.executeQuery();
+    ResultSetMetaData rsmd = rs.getMetaData();
 
-    return data;
+    int row = rs.getRow();
+    int col = rsmd.getColumnCount();
+    List<List<String>> objectList = new ArrayList<List<String>>(row);
+
+    while (rs.next()) {
+      String id = rs.getString("id");
+      String medName = rs.getString("name");
+      String price = rs.getString("price");
+      String quantity = rs.getString("quantity");
+
+      List<String> temp = new ArrayList<String>(col);
+      temp.add(id);
+      temp.add(medName);
+      temp.add(price);
+      temp.add(quantity);
+      objectList.add(temp);
+    }
+
+    return objectList;
   }
 
   @Override
   public List<List<String>> getList() throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "SELECT * FROM medicine ORDER BY id ASC";
+    String query = "SELECT * FROM medicine";
 
     Statement stmt = con.createStatement();
 
@@ -112,13 +129,12 @@ public class MedDaoImpl implements Dao<Med> {
   @Override
   public int insert(Med object) throws SQLException {
     con = DBConnection.createDBConnection();
-    String query = "INSERT INTO medicine (id, name, price, quantity) VALUES (?, ?, ?, ?)";
+    String query = "INSERT INTO medicine (name, price, quantity) VALUES (?, ?, ?)";
 
     PreparedStatement ps = con.prepareStatement(query);
-    ps.setString(1, object.getId());
-    ps.setString(2, object.getName());
-    ps.setDouble(3, object.getPrice());
-    ps.setInt(4, object.getQuantity());
+    ps.setString(1, object.getName());
+    ps.setDouble(2, object.getPrice());
+    ps.setInt(3, object.getQuantity());
 
     int result = ps.executeUpdate();
 
@@ -148,14 +164,14 @@ public class MedDaoImpl implements Dao<Med> {
   }
 
   @Override
-  public int delete(Med object) throws SQLException {
+  public int delete(String id) throws SQLException {
     con = DBConnection.createDBConnection();
 
     String query = "DELETE FROM medicine WHERE id = ?";
 
     PreparedStatement ps = con.prepareStatement(query);
 
-    ps.setString(1, object.getId());
+    ps.setString(1, id);
 
     int result = ps.executeUpdate();
 

@@ -13,7 +13,6 @@ public class UpdateA extends javax.swing.JFrame {
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
     searchTextField = new javax.swing.JTextField();
-    jLabel3 = new javax.swing.JLabel();
     confirmButton = new javax.swing.JButton();
     backButton = new javax.swing.JButton();
     jLabel4 = new javax.swing.JLabel();
@@ -26,9 +25,6 @@ public class UpdateA extends javax.swing.JFrame {
 
     jLabel2.setFont(new java.awt.Font("Titilium Web", 0, 28));
     jLabel2.setText("Search ID");
-
-    jLabel3.setFont(new java.awt.Font("Titilium Web", 0, 20));
-    jLabel3.setText("(6 digits)");
 
     confirmButton.setText("OK");
     confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,8 +70,7 @@ public class UpdateA extends javax.swing.JFrame {
             .addGap(13, 13, 13)
             .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 360,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18).addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123,
-                javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(45, 45, 45))
         .addGroup(layout.createSequentialGroup().addGap(708, 708, 708)
             .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100,
                 javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,9 +91,7 @@ public class UpdateA extends javax.swing.JFrame {
                             javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createSequentialGroup().addGap(4, 4, 4).addComponent(
                     searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 53,
-                    javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                    javax.swing.GroupLayout.PREFERRED_SIZE))
+                    javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(196, 196, 196)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
@@ -117,7 +110,7 @@ public class UpdateA extends javax.swing.JFrame {
     } else {
       try {
         data = searchTextField.getText();
-        docCtrl.getRecord(data);
+        ctrl.getRecord(data);
         UpdateB ok = new UpdateB();
         ok.setVisible(true);
         this.dispose();
@@ -175,9 +168,8 @@ public class UpdateA extends javax.swing.JFrame {
   private javax.swing.JButton homeButton;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JTextField searchTextField;
-  private DoctorController docCtrl = new DoctorController();
+  private DoctorController ctrl = new DoctorController();
   static String data;
 }

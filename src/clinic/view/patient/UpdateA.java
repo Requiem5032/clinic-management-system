@@ -115,7 +115,7 @@ public class UpdateA extends javax.swing.JFrame {
     } else {
       try {
         data = searchTextField.getText();
-        patCtrl.getRecord(data);
+        ctrl.getRecord(data);
         UpdateB confirm = new UpdateB();
         confirm.setVisible(true);
         this.dispose();
@@ -176,6 +176,6 @@ public class UpdateA extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JTextField searchTextField;
-  private PatientController patCtrl = new PatientController();
+  private PatientController ctrl = new PatientController();
   static String data;
 }

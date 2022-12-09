@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class MedController {
-  private Med model = null;
   private Dao<Med> medDao = new MedDaoImpl();
 
-  public List<String> getRecord(String id) throws SQLException {
-    List<String> data = medDao.getList(id);
+  public List<List<String>> getRecord(String name) throws SQLException {
+    List<List<String>> data = medDao.getList(name);
     return data;
   }
 
@@ -20,8 +19,8 @@ public class MedController {
     return data;
   }
 
-  public void insertRecord(String id, String name, double price, int quantity) throws SQLException {
-    model = new Med(id, name, price, quantity);
+  public void insertRecord(String name, double price, int quantity) throws SQLException {
+    Med model = new Med(null, name, price, quantity);
 
     int result = medDao.insert(model);
 
@@ -29,7 +28,7 @@ public class MedController {
   }
 
   public void updateRecord(String id, String name, double price, int quantity) throws SQLException {
-    model = new Med(id, name, price, quantity);
+    Med model = new Med(id, name, price, quantity);
 
     int result = medDao.update(model);
 
@@ -37,9 +36,7 @@ public class MedController {
   }
 
   public void deleteRecord(String id) throws SQLException {
-    model = medDao.get(id);
-
-    int result = medDao.delete(model);
+    int result = medDao.delete(id);
 
     System.out.println(result);
   }

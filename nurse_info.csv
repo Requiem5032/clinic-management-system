@@ -1,6 +1,6 @@
-﻿ID,Position
-587463,Head nurse
-213654,Emergency room nurse
-002458,Intensive care unit
-130547,Medical-surgical nurse
-503684,Licensed practical nurse
+﻿ID,First name,Last name,Position
+NULL,Amelia,Moore,Head nurse
+NULL,Sophia,Harris,mergency room nurse
+NULL,Isabella,White,Intensive care unit
+NULL,Charlotte,Thompson,Medical-surgical nurse
+NULL,Evelyn,Thomas,Licensed practical nurse

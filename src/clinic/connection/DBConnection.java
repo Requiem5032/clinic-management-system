@@ -4,8 +4,7 @@ import java.sql.*;
 
 public class DBConnection {
   static Connection con;
-  private static String url =
-      "jdbc:mysql://localhost:3306/clinic?allowMultiQueries=true&rewriteBatchedStatements=true";
+  private static String url = "jdbc:mysql://localhost:3306/clinic";
   private static String username = "root";
   private static String password = "0";
 
