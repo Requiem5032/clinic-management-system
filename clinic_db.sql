@@ -34,6 +34,7 @@ CREATE TABLE patient (
   age INT,
   gender BOOLEAN,
   address VARCHAR(250),
+  UNIQUE (nid),
   PRIMARY KEY (pid)
 );
 

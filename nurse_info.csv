@@ -1,6 +1,26 @@
-﻿ID,First name,Last name,Position
-NULL,Amelia,Moore,Head nurse
-NULL,Sophia,Harris,mergency room nurse
-NULL,Isabella,White,Intensive care unit
-NULL,Charlotte,Thompson,Medical-surgical nurse
-NULL,Evelyn,Thomas,Licensed practical nurse
+ID,First name,Last name,Position
+NULL,Barbara,Gonzales,Registered Nurse
+NULL,Carissa,Jacobson,Registered Nurse
+NULL,Aleah,Conway,Bedside Nurse
+NULL,Jazmin,Bradshaw,Bedside Nurse
+NULL,Gregory,Carrillo,Shift Manager
+NULL,Abbigail,Valencia,Shift Manager
+NULL,Mattie,Martin,Shift Manager
+NULL,Kaleb,Washington,Supervisor
+NULL,Mylee,Waters,Supervisor
+NULL,Saniya,Galvan,Director of Nursing
+NULL,Maeve,Murillo,Chief Nursing Executive
+NULL,Sloane,Hebert,Advanced Practice
+NULL,Austin,Wright,Advanced Practice
+NULL,Alberto,Myers,Advanced Practice
+NULL,Xavier,Mcbride,Anesthetist
+NULL,Shyanne,Lamb,Anesthetist
+NULL,Abbey,Acosta,Emergency Room
+NULL,Amari,Brooks,Emergency Room
+NULL,Daisy,Russell,Emergency Room
+NULL,Jonah,Lopez,Intensive Care Unit
+NULL,Caitlyn,Bennett,Intensive Care Unit
+NULL,Porter,Decker,Intensive Care Unit
+NULL,Gianna,Cain,Neonatal Intensive Care
+NULL,Hayley,Conrad,Neonatal Intensive Care
+NULL,Noah,Walker,Neonatal Intensive Care
