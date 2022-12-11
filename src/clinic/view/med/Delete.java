@@ -105,6 +105,8 @@ public class Delete extends javax.swing.JFrame {
 
   private void deteleButtonActionPerformed(java.awt.event.ActionEvent evt) {
     if (deleteTextField.getText().equals("")) {
+      JOptionPane.showMessageDialog(this, "Please enter data to delete!");
+    } else {
       try {
         String data = deleteTextField.getText();
         int result = ctrl.deleteRecord(data);
