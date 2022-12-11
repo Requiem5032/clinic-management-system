@@ -19,25 +19,21 @@ public class DoctorController {
     return data;
   }
 
-  public void insertRecord(String firstName, String lastName, String position) throws SQLException {
+  public int insertRecord(String firstName, String lastName, String position) throws SQLException {
     Doctor model = new Doctor(null, firstName, lastName, position);
-
     int result = doctorDao.insert(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void updateRecord(String id, String firstName, String lastName, String position) throws SQLException {
+  public int updateRecord(String id, String firstName, String lastName, String position)
+      throws SQLException {
     Doctor model = new Doctor(id, firstName, lastName, position);
-
     int result = doctorDao.update(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void deleteRecord(String id) throws SQLException {
+  public int deleteRecord(String id) throws SQLException {
     int result = doctorDao.delete(id);
-
-    System.out.println(result);
+    return result;
   }
 }

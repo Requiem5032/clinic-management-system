@@ -2,7 +2,6 @@ package clinic.view.med;
 
 import clinic.view.MainPage;
 import javax.swing.JOptionPane;
-import clinic.controller.MedController;
 
 public class UpdateA extends javax.swing.JFrame {
   public UpdateA() {
@@ -108,16 +107,10 @@ public class UpdateA extends javax.swing.JFrame {
     if (searchTextField.getText().equals((""))) {
       JOptionPane.showMessageDialog(this, "Please enter data to search!");
     } else {
-      try {
-        data = searchTextField.getText();
-        ctrl.getRecord(data);
-        UpdateB ok = new UpdateB();
-        ok.setVisible(true);
-        this.dispose();
-      } catch (Exception e) {
-        System.out.println(e);
-        JOptionPane.showMessageDialog(this, "Invalid ID!");
-      }
+      data = searchTextField.getText();
+      UpdateB ok = new UpdateB();
+      ok.setVisible(true);
+      this.dispose();
     }
   }
 
@@ -170,6 +163,5 @@ public class UpdateA extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel4;
   private javax.swing.JTextField searchTextField;
-  private MedController ctrl = new MedController();
   static String data;
 }

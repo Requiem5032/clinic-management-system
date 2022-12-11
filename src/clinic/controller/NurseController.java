@@ -19,25 +19,21 @@ public class NurseController {
     return data;
   }
 
-  public void insertRecord(String firstName, String lastName, String position) throws SQLException {
+  public int insertRecord(String firstName, String lastName, String position) throws SQLException {
     Nurse model = new Nurse(null, firstName, lastName, position);
-
     int result = nurseDao.insert(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void updateRecord(String id, String firstName, String lastName, String position) throws SQLException {
+  public int updateRecord(String id, String firstName, String lastName, String position)
+      throws SQLException {
     Nurse model = new Nurse(id, firstName, lastName, position);
-
     int result = nurseDao.update(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void deleteRecord(String id) throws SQLException {
+  public int deleteRecord(String id) throws SQLException {
     int result = nurseDao.delete(id);
-
-    System.out.println(result);
+    return result;
   }
 }

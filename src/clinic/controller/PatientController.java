@@ -19,27 +19,22 @@ public class PatientController {
     return data;
   }
 
-  public void insertRecord(String nid, String firstName, String lastName, int age, boolean gender,
+  public int insertRecord(String nid, String firstName, String lastName, int age, boolean gender,
       String addr) throws SQLException {
     Patient model = new Patient(null, nid, firstName, lastName, age, gender, addr);
-
     int result = patientDao.insert(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void updateRecord(String pid, String firstName, String lastName, int age, boolean gender, String addr)
-      throws SQLException {
+  public int updateRecord(String pid, String firstName, String lastName, int age, boolean gender,
+      String addr) throws SQLException {
     Patient model = new Patient(pid, null, firstName, lastName, age, gender, addr);
-
     int result = patientDao.update(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void deleteRecord(String id) throws SQLException {
+  public int deleteRecord(String id) throws SQLException {
     int result = patientDao.delete(id);
-
-    System.out.println(result);
+    return result;
   }
 }

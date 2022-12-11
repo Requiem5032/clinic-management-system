@@ -19,25 +19,20 @@ public class MedController {
     return data;
   }
 
-  public void insertRecord(String name, double price, int quantity) throws SQLException {
+  public int insertRecord(String name, double price, int quantity) throws SQLException {
     Med model = new Med(null, name, price, quantity);
-
     int result = medDao.insert(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void updateRecord(String id, String name, double price, int quantity) throws SQLException {
+  public int updateRecord(String id, String name, double price, int quantity) throws SQLException {
     Med model = new Med(id, name, price, quantity);
-
     int result = medDao.update(model);
-
-    System.out.println(result);
+    return result;
   }
 
-  public void deleteRecord(String id) throws SQLException {
+  public int deleteRecord(String id) throws SQLException {
     int result = medDao.delete(id);
-
-    System.out.println(result);
+    return result;
   }
 }

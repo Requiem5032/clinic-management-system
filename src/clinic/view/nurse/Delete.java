@@ -109,11 +109,14 @@ public class Delete extends javax.swing.JFrame {
     } else {
       try {
         String data = deleteTextField.getText();
-        ctrl.deleteRecord(data);
-        JOptionPane.showMessageDialog(this, "Delete data sucessefully!");
+        int result = ctrl.deleteRecord(data);
+        if (result != 0) {
+          JOptionPane.showMessageDialog(this, "Delete data sucessefully!");
+        } else {
+          JOptionPane.showMessageDialog(this, "Invalid ID!");
+        }
       } catch (Exception e) {
         System.out.println(e);
-        JOptionPane.showMessageDialog(this, "Invalid ID!");
       }
     }
   }
