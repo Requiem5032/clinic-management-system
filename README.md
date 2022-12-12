@@ -26,7 +26,7 @@
 - Step 1: Create new folder, open this new folder in VSCode, open terminal and clone the project
 
 ```lang-non
-  git clone <https://github.com/Requiem5032/java-project>
+  git clone https://github.com/Requiem5032/clinic-management-system.git
 ```
 
 - Step 2: Open MySQL, click the plus sign to create a new connection
