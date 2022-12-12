@@ -9,33 +9,33 @@ import java.util.*;
 public class MedController {
   private Dao<Med> medDao = new MedDaoImpl();
   
-  // Show infomation for search name
+  /** Get information from name */
   public List<List<String>> getRecord(String name) throws SQLException {
     List<List<String>> data = medDao.getList(name);
     return data;
   }
   
-  // Show fullist
+  /** Get information from all records */
   public List<List<String>> getRecord() throws SQLException {
     List<List<String>> data = medDao.getList();
     return data;
   }
   
-  // Add data
+  /** Add record */
   public int insertRecord(String name, double price, int quantity) throws SQLException {
     Med model = new Med(null, name, price, quantity);
     int result = medDao.insert(model);
     return result;
   }
   
-  // Update data 
+  /** Update record */
   public int updateRecord(String id, String name, double price, int quantity) throws SQLException {
     Med model = new Med(id, name, price, quantity);
     int result = medDao.update(model);
     return result;
   }
   
-  // Delete data
+  /** Delete record */
   public int deleteRecord(String id) throws SQLException {
     int result = medDao.delete(id);
     return result;

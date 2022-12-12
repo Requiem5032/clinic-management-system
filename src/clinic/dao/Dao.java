@@ -5,24 +5,24 @@ import java.util.*;
 
 public interface Dao<T> {
 
-  // Get one record from database
+  /** Get records, which meet the name requirement from database */
   List<T> get(String name) throws SQLException;
   
-  // Get all record from database
+  /** Get all records from database */
   List<T> get() throws SQLException;
   
-  // Get one record from database as a list of string
+  /** Get records, which meet the name requirement from database */
   List<List<String>> getList(String name) throws SQLException;
   
-  // Get all record from database as a list of list of string
+  /** Get all records from database */
   List<List<String>> getList() throws SQLException;
   
-  // Insert an object to database
+  /** Insert a record to database */
   int insert(T object) throws SQLException;
   
-  // Update an object in database
+  /** Update a record in database */
   int update(T object) throws SQLException;
   
-  // Delete an object from database
+  /** Delete a record from database */
   int delete(String id) throws SQLException;
 }

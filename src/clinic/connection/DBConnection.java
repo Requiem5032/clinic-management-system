@@ -4,9 +4,15 @@ import java.sql.*;
 
 public class DBConnection {
   static Connection con;
-  private static String url = "jdbc:mysql://localhost:3306/clinic"; /** Change the port to your connection port */
-  private static String username = "root"; /** Change to your "mysql" username */
-  private static String password = "1234"; /**  Change to your "mysql" password */
+
+  /** Database URL */
+  private static String url = "jdbc:mysql://localhost:3306/clinic";
+
+  /** MySQL database username */
+  private static String username = "root";
+
+  /** MySQL database password */
+  private static String password = "0";
 
   public static Connection createDBConnection() throws SQLException {
     try {
@@ -15,7 +21,6 @@ public class DBConnection {
     } catch (Exception e) {
       System.out.print(e);
     }
-
     return con;
   }
 
