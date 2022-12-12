@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class DBConnection {
   static Connection con;
-  private static String url = "jdbc:mysql://localhost:3306/clinic";
-  private static String username = "root";
-  private static String password = "0";
+  private static String url = "jdbc:mysql://localhost:3306/clinic"; /** Change the port to your connection port */
+  private static String username = "root"; /** Change to your "mysql" username */
+  private static String password = "1234"; /**  Change to your "mysql" password */
 
   public static Connection createDBConnection() throws SQLException {
     try {
